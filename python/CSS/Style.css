@@ -1,0 +1,251 @@
+*{
+    font-family: 'Inter';
+    padding: 0;
+    margin: 0;
+}
+
+/* header */
+.header {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    height: 100px;
+    background: #222222;
+}
+
+
+/* Thanh tìm kiếm */
+#txtSearch {
+    margin-top: 54px;
+    float: right;
+    width:  40%;
+    height: 25px;
+    color: #111111;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 3px;
+    padding: 10px 10px;
+
+}
+
+::placeholder { 
+    color: #111111;;
+}
+
+
+/* Nút tìm kiếm */
+#btnSearch {
+    font-size: 18px;
+    margin-top: 45px;
+    float: right;
+    width: 40px; 
+    height: 40px; 
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0,3s; 
+} 
+
+#btnSearch:hover {
+    color: #aaaaaa;
+    transition-duration: 0,3s;
+}
+
+/* 
+#btnSearch {
+    text-shadow: 1px 1px 1px  #bf1c4591;
+} */
+
+
+/* Nút đăng nhập */ 
+#btnLogin {
+    font-size: 18px;
+    margin-top: 45px;
+    margin-right: 30px;
+    float: right;
+    width: 40px; 
+    height: 40px; 
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0,3s; 
+}
+
+#btnLogin:hover {
+    color: #aaaaaa;
+    transition-duration: 0,3s;
+}
+
+/* top menu */
+.topmenu {
+    height: 50px; 
+    width: 100%;   
+    background-color:black ;
+}
+
+.topmenu ul{
+    width: 100%;   
+    display: flex;
+    list-style-type: none;    
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    margin: 0;
+}
+
+.topmenu li a {
+    display: block;
+    padding: 16px 20px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.3s; 
+}
+
+.topmenu li a:hover {
+    display: block;
+    color: #ffffff;
+    background: #222222;
+    transition-duration: 0.3s; 
+}
+
+/* footer */
+.footer{
+    height: 200px;
+    background: #000000;
+}
+
+/* Màn hình thu nhỏ */
+@media only screen and (max-width: 1100px){
+    .topmenu {
+        display: none;
+    }
+    .header {
+        grid-template-columns: 10% 60% 30%;
+        height: 100px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body{
+        width: 500px;
+    }
+    
+    #btnLogin {
+        margin-right: 10px;
+    }
+}
+  
+
+/* form Đăng nhập và đăng ký */
+#frmLogin  {
+    margin: 10% auto auto auto; 
+    display: block; 
+    width: 450px ;
+    height: 330px;
+    border-radius: 20px;
+    background: #ffffff;
+    
+}
+
+#frmRegister{
+    margin: 5% auto 10% auto; 
+    display: block; 
+    width: 450px ;
+    height: 560px;
+    border-radius: 20px;
+    background: #ffffff;
+    
+}
+
+.TopFrm {
+    height: 60px;
+    text-align: center;
+}
+
+.CenterFrm{
+    margin: 10px;
+    text-align: Center;
+}
+
+.BotFrm{
+    text-align: center;
+}
+
+/* label */
+.labLog {
+    Color: #000000;
+    float: left;
+    margin-left: 20px;
+}
+
+/* nhập dư liệu */
+.txtLog {
+    width: 385px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    outline: none;
+}
+
+
+.btnSubmit {
+    width: 350px;
+    padding: 10px 20px;
+    margin:  10px  10px  10px 50px;
+    background-color: #000000;
+    border-radius: 10px;
+    border: none;
+    color:#ffffff;
+    font-Size: 18px;
+    transition-duration: 0.3s;
+}
+
+.btnSubmit:hover {
+    transition-duration: 0.3s;
+    background-color: #646464;
+    cursor: pointer;
+}
+
+#btnCloseFrm{
+    font-size: 18px;
+    float: right;
+    width: 50px; 
+    height: 50px; 
+    color: #000000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0,3s; 
+    font-size:24px;
+} 
+
+#btnCloseFrm:hover {
+    color: #a6a6a6;
+    transition-duration: 0,3s;
+}
+
+/* nền đen che màn hình */
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+/* animation */
+#frmLogin, #frmRegister{
+    animation: animatezoom 0.6s
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
