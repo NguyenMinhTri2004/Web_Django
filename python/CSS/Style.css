@@ -4,6 +4,17 @@
     margin: 0;
 }
 
+/* all link */
+a {
+    color: #555555;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
 /* header */
 .header {
     display: grid;
@@ -49,14 +60,7 @@
 
 #btnSearch:hover {
     color: #aaaaaa;
-    transition-duration: 0,3s;
 }
-
-/* 
-#btnSearch {
-    text-shadow: 1px 1px 1px  #bf1c4591;
-} */
-
 
 /* Nút đăng nhập */ 
 #btnLogin {
@@ -75,7 +79,6 @@
 
 #btnLogin:hover {
     color: #aaaaaa;
-    transition-duration: 0,3s;
 }
 
 /* top menu */
@@ -97,7 +100,7 @@
 
 .topmenu li a {
     display: block;
-    padding: 16px 20px;
+    padding: 15px 20px;
     color: rgb(255, 255, 255);
     font-size: 16px;
     text-align: center;
@@ -109,38 +112,10 @@
     display: block;
     color: #ffffff;
     background: #222222;
-    transition-duration: 0.3s; 
 }
-
-/* footer */
-.footer{
-    height: 200px;
-    background: #000000;
-}
-
-/* Màn hình thu nhỏ */
-@media only screen and (max-width: 1100px){
-    .topmenu {
-        display: none;
-    }
-    .header {
-        grid-template-columns: 10% 60% 30%;
-        height: 100px;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    body{
-        width: 500px;
-    }
-    
-    #btnLogin {
-        margin-right: 10px;
-    }
-}
-  
 
 /* form Đăng nhập và đăng ký */
+/* form đăng nhập */
 #frmLogin  {
     margin: 10% auto auto auto; 
     display: block; 
@@ -151,6 +126,7 @@
     
 }
 
+/* form đăng ký */
 #frmRegister{
     margin: 5% auto 10% auto; 
     display: block; 
@@ -161,21 +137,24 @@
     
 }
 
+/* Phần đầu form */
 .TopFrm {
     height: 60px;
     text-align: center;
 }
 
+/* Phần giữa */
 .CenterFrm{
     margin: 10px;
     text-align: Center;
 }
 
+/* phần cuối */
 .BotFrm{
     text-align: center;
 }
 
-/* label */
+/* label trong form*/
 .labLog {
     Color: #000000;
     float: left;
@@ -192,7 +171,20 @@
     outline: none;
 }
 
+/* icon mắt */
+#eyecheck:checked~.fa-eye-slash {
+    display: none;
+}
 
+#eyecheck:checked~.fa-eye {
+    display: inline-block;
+}
+
+#eyecheck~.fa-eye {
+    display: none;
+}
+
+/* nút đăng ký, đăng nhập */
 .btnSubmit {
     width: 350px;
     padding: 10px 20px;
@@ -206,11 +198,11 @@
 }
 
 .btnSubmit:hover {
-    transition-duration: 0.3s;
     background-color: #646464;
     cursor: pointer;
 }
 
+/* nút tắt */
 #btnCloseFrm{
     font-size: 18px;
     float: right;
@@ -220,13 +212,12 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    transition-duration: 0,3s; 
+    transition-duration: 0.3s; 
     font-size:24px;
 } 
 
 #btnCloseFrm:hover {
     color: #a6a6a6;
-    transition-duration: 0,3s;
 }
 
 /* nền đen che màn hình */
@@ -240,12 +231,199 @@
     overflow: auto; 
     background-color: rgba(0,0,0,0.4);
 }
+
 /* animation */
 #frmLogin, #frmRegister{
     animation: animatezoom 0.6s
 }
 
+/* hiệu ứng hiện form đăng nhập */
 @keyframes animatezoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
+}
+
+/* Trang truyện */
+/* link */
+.Link {
+   padding: 5px 5px;
+   background: rgb(201, 201, 201);
+}
+
+/* Container */
+.container {
+    background-color: #ffffff;
+}
+
+/* Thông tin về truyền */
+.MangaContent {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin-bottom: 20px;
+}
+
+/* hình ảnh */
+.MangaImage {
+    display: flex;
+    justify-content: center;
+}
+
+/* tên truyện */
+.MangaName {
+    height: 80%;
+    justify-content: center; 
+    font-size: 24px; 
+    padding: 20px 20px;
+    cursor: default;
+}
+
+/* Dòng thông tin */
+.Info-row {
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+/* Tên thông tin */
+.InfoName {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    margin: 0 0 5px;
+    cursor: default;
+}
+
+/* Nội dung thông tin */
+.InfoDetail {
+    color: rgb(0, 0, 0);  
+    margin-left: 20px;
+    cursor: default;
+}
+
+/* Nút tương tác */
+.InteractButton {
+    padding: 12px 20px;
+    font-family: 'inter';
+    font-size: 14px;
+    background-color: #1e1e1e;
+    color:rgb(255, 255, 255);
+    border-radius: 5px;
+    border: none;
+    transition-duration: 0.4s;
+    margin: 2px; 
+    cursor: pointer;
+}
+
+.InteractButton:hover {
+    background-color: rgb(185, 185, 185);
+   
+}
+
+/* Nút tương tác (nút like) */
+.btnReadLike{
+    background-color: rgb(255, 30, 97);
+}
+
+/* Phần Nội dung */
+.list-view {
+    margin: 0 0 10px 10px;
+    cursor: default;
+}
+
+/* Nội dung truyện */
+.Manga-Review {
+    margin-top: 10px;
+    cursor: default;
+}
+
+/* Phần các tập truyện */
+.list-chapter {
+    height: 300px;
+    border: 1px solid #aaaaaa;
+    overflow: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+    
+/* Phần trên list */
+.heading-list-chapter {
+    margin-top: 10px;
+    display: grid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #aaaaaa;
+    grid-template-columns: 50% 25% 25%;
+    background-color: rgb(230, 240, 255);
+    padding: 5px 10px;
+    cursor: default;
+}
+
+/* Chương */
+.chapter-row {
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    background-color: rgb(248, 248, 248);
+    padding: 5px 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.chapter-row:hover {
+    background-color: rgb(123, 123, 123);
+    color:#ffffff
+}
+
+/* footer */
+.footer{
+    background: #000000;
+}
+
+/* nút ở footer */
+.keyword-btn{
+    color: white; 
+    background-color: #000000; 
+    border: 1px solid white; 
+    border-radius: 5px; 
+    padding: 10px 20px;;
+    margin: 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.keyword-btn:hover {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: black ;
+}
+
+/* Màn hình thu nhỏ */
+@media only screen and (max-width: 1000px){
+    .topmenu {
+        display: none;
+    }
+    .header {
+        grid-template-columns: 10% 60% 30%;
+        height: 100px;
+    }
+    .MangaContent{
+        display: block;
+    }
+    .MangaInfo{
+        padding: 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body{
+        width: 500px;
+    }
+    
+    
+    #btnLogin {
+        margin-right: 10px;
+    }
+
+    .container{
+        width: 500px;
+    }
+
 }

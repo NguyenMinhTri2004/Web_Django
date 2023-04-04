@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Teddy Bear Shop</title>
+    <title>Manga: The WibuZone</title>
     <link rel="stylesheet" href="CSS/Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
@@ -18,49 +18,208 @@
             <img src="Element/Image/HeaderLogo.png" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;">
         </div>
         
-        
         <!-- Tìm kiếm -->
         <div class="search-holder">
+            <!-- Nút tìm kiếm -->
             <button id="btnSearch" name="btnSearch">
                 <i class="fa-solid fa-magnifying-glass"></i>
              </button>
+            <!-- Ô nhập thông tin tìm kiếm -->
             <input id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
         </div>
 
-        <!-- Đăng nhập và giỏ hàng-->
+        <!-- Đăng nhập-->
         <div class="login-function">
+            <!-- Nút đăng nhập -->
             <button id="btnLogin" onclick="OpenLogin()">
                 <i class="fa-solid fa-right-to-bracket"></i>
             </button>
-
         </div>      
     </div>
 
+    <!-- Topmenu -->
     <div class="topmenu">
         <ul>
             <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
-            <li> <a href = "">TRANG CHỦ</a></li>
+            <li> <a href = "">MỚI RA MẮT</a></li>
+            <li> <a href = "">THỂ LOẠI</a></li>
+            <li> <a href = "">CÂP NHẬT</a></li>
+            <li> <a href = "">TRUYỆN HOT</a></li>
+            <li> <a href = "">YÊU THÍCH</a></li>
         </ul>
     </div>
 
+    <!-- Nơi hiện ra vị trí các trang -->
+    <div class="Link">
+        <a href="#"><i class="fa-solid fa-house"></i></a> 
+        <a href="#"><b>Truyện</b></a> >>
+        <a href="#" style="color: #000000;"><b>Record of Ragnarok</b></b></a> 
+    </div> 
+    
     <div class="container">
-        <h1>CONTAINER</h1> 
+        <!-- Các thông tin truyện -->
+        <div class="MangaPage">
+            <!-- tên truyện -->
+            <div class="MangaName" style="display:flex; justify-content: center; font-size: 24px; padding: 20px 20px; text-align: center;">
+                <p><b>RECORD OF RAGNAROK</b></p>
+            </div>
+            <!-- Thông tin về truyện -->
+            <div class="MangaContent">
+                <!-- Hình ảnh -->
+                <div class="MangaImage">
+                    <img src="Element/Image/000000.jpg" id="MainImageContent" style="width: 300px; height: 450px; border-radius: 10px;" >
+                </div>
+                <!-- Các thông tin chính -->
+                <div class="MangaInfo">
+                    <!-- Tác giả -->
+                    <div class="author Info-row">
+                        <p class="InfoName"><i class="fa-solid fa-book"></i> Tác giả:  </p>
+                        <p class="InfoDetail">Fukui Takumi</p>
+                    </div>
+
+                    <!-- Tình trạng  -->
+                    <div class="status Info-row">
+                        <p class="InfoName"><i class="fa-solid fa-pen"></i> Tình trạng: <p>
+                        <p class="InfoDetail">Đang tiến hành</p>
+                    </div>
+                    
+                    <!-- Thể loại truyện -->
+                    <div class="category Info-row">
+                        <p class="InfoName"><i class="fa-solid fa-bookmark"></i> Thể loại: <p>
+                        <p class="InfoDetail">Action - Historical - Manga - Martial Arts - Seinen - Supernatural</p>
+                    </div>
+
+                    <!-- Lược xem -->
+                    <div  class="view Info-row">
+                        <p class="InfoName"><i class="fa-solid fa-eye"></i> Lượt xem: <p>
+                        <p class="InfoDetail">30.000.000+</p>
+                    </div>
+
+                    <!-- Đánh giá -->
+                    <div class="rate Info-row">
+                        <p class="InfoName"><i class="fa-solid fa-face-smile"></i> Đánh giá: <p>
+                        <p class="InfoDetail">
+                            <i class="fa-solid fa-star fa-beat"></i>
+                            <i class="fa-solid fa-star fa-beat"></i>
+                            <i class="fa-solid fa-star fa-beat"></i>
+                            <i class="fa-solid fa-star fa-beat"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </p>
+                    </div>
+
+                    <!-- Các nút tương tác -->
+                    <div class="MangaInteract">
+                        <button class="InteractButton btnReadLike"><i class="fa-solid fa-heart"></i> Yêu thích</button>
+                        <button class="InteractButton btnReadStart"><i class="fa-solid fa-play"></i> Đọc từ đầu</button>
+                        <button class="InteractButton btnReadNew"><i class="fa-solid fa-forward-fast"></i> Đọc mới nhất</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phần nội dung! -->
+            <div class="list-view">
+                <p class="title-list" style="font-size: 24px; color:rgb(45, 174, 255);"><i class="fa-solid fa-file"></i> NỘI DUNG</p>
+                <hr style="border-top: 2px solid rgb(45, 174, 255);">
+                <p class="Manga-Review"> Các vị thần mở hội nghị để bàn về sự sống còn của nhân loại. 
+                Tất cả đều quyết định "kết liễu" con người, chỉ duy một valkyrie đứng lên phản đối bằng cách đề nghị 1 cuộc chiến giữa thần và người. 
+                Cuộc chiến quyết định số phận của nhân loại này sẽ ra sao? Xin mời đón đọc.</p>
+            </div>
+
+            <!-- Phần các tập truyện -->
+            <div class="list-view">
+                <p class="title-list" style="font-size: 24px; color:rgb(45, 174, 255);"><i class="fa-solid fa-file"></i> DANH SÁCH CÁC CHƯƠNG</p>
+                <hr style="border-top: 2px solid rgb(45, 174, 255)">
+                
+                <!-- phần trên list -->
+                <div class="heading-list-chapter">
+                    <div class="col-name">Số chương</div>
+                    <div class="col-update">Cập nhật</div>
+                    <div class="col-view">Lượt xem</div>
+                </div>
+                
+                <!-- list các trương -->
+                <div class="list-chapter">
+                    <ul class="list-chapter-review">
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 76</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 75</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 74</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 73</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 72</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 71</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 70</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 69</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 68</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 67</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 66</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                        <li class="chapter-row">
+                            <div class="col-name">Chương 65</div>
+                            <div class="col-update">29/03/2023</div>
+                            <div class="col-view">86500</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
-        <br><label style="color: #FFF4F9; margin: 20px; font-size: 18px">HỆ THỐNG CỬA HÀNG: <br></label>
-        <label style="color: #FFF4F9; font-size: 15px; margin-left:40px">Chi nhánh 1: 273 An Dương Vương, F3, Q5, TPHCM <br></label>
-        <label style="color: #FFF4F9; font-size: 15px; margin-left:40px">Chi nhánh 2: 105 Bà Huyện Thanh Quan, F7, Q5, TPHCM <br></label>
-        <label style="color: #FFF4F9; font-size: 15px; margin-left:40px">Chi nhánh 3: 04 Tôn Đức Thắng, F Bến Nghé, Q1, TPHCM <br></label>
-        <br><label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Hotline: 0189862116 <br></label>
-        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Email: bear@gmail.com<br></label>
-        <br><hr>
+        <img src="Element/Image/HeaderLogo.png" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;"><br>
+        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Chính sách bảo mật<br></label>
+        <br>
+        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Từ khóa: <br></label>
+        <div class="footer-button" style="margin: 10px">
+            <button class="keyword-btn">Anime</button>
+            <button class="keyword-btn">Chinese</button>
+            <button class="keyword-btn">Action</button>
+            <button class="keyword-btn">Vietnamese</button>
+            <button class="keyword-btn">Horror</button>
+            <button class="keyword-btn">Love</button>
+        </div>
+        <hr>
         <div style="display:flex; justify-content: center; color: #FFF4F9;; font-size: 16px;">
             <label>@2022 - sàobnoiwuuiwsàobnoiwuuiw</label>
         </div>          
@@ -79,24 +238,31 @@
 
             <div class="CenterLog">
                 <label class="labLog" for="txtUsername"><b>Tên người dùng</b></label><br>
-                <input class="txtLog" type="text" placeholder="Nhập tên người dùng!" name="txtUsername" required><br>
+                <input class="txtLog" type="text" placeholder="Nhập tên người dùng!" name="txtUsername" id="txtUsernameLogin"><br>
             
                 <label class="labLog" for="txtPassword"><b>Mật khẩu</b></label><br>
-                <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPassword" id="txtPassword"required>
-                <br>
-                <button class="btnSubmit" type="submit">ĐĂNG NHẬP</button>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPassword" id="txtPasswordLogin">
+                    <label style="position: absolute; left: 410px; top: 20px" >
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtPasswordLogin')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
+
+                <button class="btnSubmit" type="submit" onclick="CheckLoginInput()">ĐĂNG NHẬP</button>
             </div>  
 
             <div class="BotFrm">
                 <hr>
-                <span style="color: #555555;">Chưa có tài khoản? <a href="#" style="color: #000000;" onclick="OpenRegister()" >Đăng ký ngay!</a></span>
+                <span>Chưa có tài khoản? <a href="#" onclick="OpenRegister()"><b>Đăng ký ngay!</b></a></span>
             </div>
         </div>
     </div>
     <!-- Đăng ký  -->
-    <div id="Register" class="modal" style="display: none;" onclick="ExitLog()">
+    <div id="Register" class="modal" style="display: none;">
         <div id="frmRegister">            
-            <button id="btnCloseFrm" >
+            <button id="btnCloseFrm" onclick="ExitLog()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -106,26 +272,40 @@
 
             <div class="CenterLog">
                 <label class="labLog" for="txtUsername"><b>Tên người dùng</b></label><br>
-                <input class="txtLog" type="text" placeholder="Nhập tên người dùng" name="txtUsername" required><br>
+                <input class="txtLog" type="text" placeholder="Nhập tên người dùng" name="txtUsernameRegister" id="txtUsernameRegister"><br>
             
                 <label class="labLog" for="txtNumberPhone"><b>Số điện thoại</b></label><br>
-                <input class="txtLog" type="text" placeholder="Nhập số điện thoại!" name="txtNumberPhone" required><br>
+                <input class="txtLog" type="text" placeholder="Nhập số điện thoại!" name="txtNumberPhoneRegister" id="txtNumberPhoneRegister"><br>
                 
                 <label class="labLog" for="txtEmail"><b>Email</b></label><br>
-                <input class="txtLog" type="text" placeholder="Nhập Email!" name="txtRePassword" required><br>
+                <input class="txtLog" type="text" placeholder="Nhập Email!" name="txtEmailRegister" id="txtEmailRegister"><br>
                         
                 <label class="labLog" for="txtPassword"><b>Mật khẩu</b></label><br>
-                <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPassword" required><br>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPasswordRegister" id="txtPasswordRegister">
+                    <label style="position: absolute; left: 410px; top: 20px">
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtPasswordRegister')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
 
                 <label class="labLog" for="txtRePassword"><b>Xác nhận mật khẩu</b></label><br>
-                <input class="txtLog" type="password" placeholder="Nhập lại mật khẩu!" name="txtRePassword" required><br>
-            
-                <button class="btnSubmit" type="submit">Đăng ký</button>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập lại mật khẩu!" name="txtRePasswordRegister" id="txtRePasswordRegister">
+                    <label style="position: absolute; left: 410px; top: 20px" >
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtRePasswordRegister')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
+
+                <button class="btnSubmit" type="submit" onclick="CheckRegisterInput()">Đăng ký</button>
             </div>  
             
             <div class="BotFrm">
                 <hr>
-                <span style="color: #555555;">Đã có tài khoản? <a href="#" style="color: #000000;" onclick="OpenLogin()" >Đăng nhập ngay!</a></span>
+                <span>Đã có tài khoản? <a href="#" onclick="OpenLogin()"><b>Đăng nhập ngay!</b></a></span>
             </div>
         </div>
     </div>
