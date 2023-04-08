@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- phần comment-->
+    <div class="comment">
+        <!-- comment form khi mà click vào sẽ hiện lên bảng để comment và gửi-->
+        <div class="comment_form" id="comment_formId">
+            <textarea id="comment_text" class="form_control" placeholder="Nội dung bình luận" aria-hidden="true"
+                style="display: block;"></textarea>
+            <div class="comment_info">
+                <input id="comment_name" class="comment-name form-control" maxlength="50" type="text"
+                    placeholder="Họ tên (Bắt buộc)">
+                <input id="comment_email" class="comment-email form-control" maxlength="100" type="text"
+                    placeholder="Email">
+                <button type="submit" class="btn btn-primary" onclick="sendComment(0);return false;">
+                    Gửi
+                </button>
+            </div>
+        </div>
+        <div class="comment_input" id="comment_inputId" onclick="showComment()">
+            <!-- function để hiện form comment và gửi -->
+            Mời bạn thảo luận, vui lòng không spam, share link kiếm tiền, thiếu lành mạnh,... để tránh bị khóa tài khoản
+        </div>
+        <div class="comment_list">
+            <div class="a_comment">
+                <!-- phần avatar của user-->
+                <figure class="avatar">
+                    <img src="" alt="avatar" align="left">
+                </figure>
+                <!-- Tên user -->
+                <div class="comment_name">
+                    Tên
+                </div>
+                <!-- Nội dung comment của user-->
+                <div class="comment_content">
+                    Bình luận
+                </div>
+                <div class="comment_footer">
+                    <!--Reply lại comment của user -->
+                    <span onclick="replyComment()">
+                        <i class="fa fa-comment">
+                        </i> Trả lời</span>
+                    <!-- Like comment-->
+                    <span class="vote-up" onclick="voteComment()">
+                        <i class="fa fa-thumbs-up">
+                        </i>
+                        <span class="vote-up-count">
+                            0
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showComment() {
+            var x = document.getElementById("comment_inputId");
+            var t = document.getElementById("comment_formId");
+            x.style.display = "none";
+            t.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
