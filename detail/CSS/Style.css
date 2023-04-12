@@ -1,0 +1,544 @@
+*{
+    font-family: 'Inter';
+    padding: 0;
+    margin: 0;
+}
+
+/* all link */
+a {
+    color: #555555;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+/* header */
+.header {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    height: 100px;
+    background: #222222;
+}
+
+
+/* Thanh tìm kiếm */
+#txtSearch {
+    margin-top: 54px;
+    float: right;
+    width:  40%;
+    height: 25px;
+    color: #111111;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 3px;
+    padding: 10px 10px;
+
+}
+
+::placeholder { 
+    color: #111111;;
+}
+
+
+/* Nút tìm kiếm */
+#btnSearch {
+    font-size: 18px;
+    margin-top: 45px;
+    float: right;
+    width: 40px; 
+    height: 40px; 
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0,3s; 
+} 
+
+#btnSearch:hover {
+    color: #aaaaaa;
+}
+
+/* Nút đăng nhập */ 
+#btnLogin {
+    font-size: 18px;
+    margin-top: 45px;
+    margin-right: 30px;
+    float: right;
+    width: 40px; 
+    height: 40px; 
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0,3s; 
+}
+
+#btnLogin:hover {
+    color: #aaaaaa;
+}
+
+/* top menu */
+.topmenu {
+    height: 50px; 
+    width: 100%;   
+    background-color:black;
+    transition: all 0.3s ease;
+}
+
+.topmenu ul{
+    width: 100%;   
+    display: flex;
+    list-style-type: none;    
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    margin: 0;
+}
+
+.topmenu li a {
+    display: block;
+    padding: 15px 20px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.3s; 
+}
+
+.topmenu li a:hover {
+    display: block;
+    color: #ffffff;
+    background: #222222;
+}
+
+/* form Đăng nhập và đăng ký */
+/* form đăng nhập */
+#frmLogin  {
+    margin: 10% auto auto auto; 
+    display: block; 
+    width: 450px ;
+    height: 330px;
+    border-radius: 20px;
+    background: #ffffff;
+    
+}
+
+/* form đăng ký */
+#frmRegister{
+    margin: 5% auto 10% auto; 
+    display: block; 
+    width: 450px ;
+    height: 560px;
+    border-radius: 20px;
+    background: #ffffff;
+    
+}
+
+/* Phần đầu form */
+.TopFrm {
+    height: 60px;
+    text-align: center;
+}
+
+/* Phần giữa */
+.CenterFrm{
+    margin: 10px;
+    text-align: Center;
+}
+
+/* phần cuối */
+.BotFrm{
+    text-align: center;
+}
+
+/* label trong form*/
+.labLog {
+    Color: #000000;
+    float: left;
+    margin-left: 20px;
+}
+
+/* nhập dư liệu */
+.txtLog {
+    width: 385px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    outline: none;
+}
+
+.Nav_Menu {
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+/* icon mắt */
+#eyecheck:checked~.fa-eye-slash {
+    display: none;
+}
+
+#eyecheck:checked~.fa-eye {
+    display: inline-block;
+}
+
+#eyecheck~.fa-eye {
+    display: none;
+}
+
+/* nút đăng ký, đăng nhập */
+.btnSubmit {
+    width: 350px;
+    padding: 10px 20px;
+    margin:  10px  10px  10px 50px;
+    background-color: #000000;
+    border-radius: 10px;
+    border: none;
+    color:#ffffff;
+    font-Size: 18px;
+    transition-duration: 0.3s;
+}
+
+.btnSubmit:hover {
+    background-color: #646464;
+    cursor: pointer;
+}
+
+/* nút tắt */
+#btnCloseFrm{
+    font-size: 18px;
+    float: right;
+    width: 50px; 
+    height: 50px; 
+    color: #000000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0.3s; 
+    font-size:24px;
+} 
+
+#btnCloseFrm:hover {
+    color: #a6a6a6;
+}
+
+/* nền đen che màn hình */
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* animation */
+#frmLogin, #frmRegister{
+    animation: animatezoom 0.6s
+}
+
+/* hiệu ứng hiện form đăng nhập */
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Trang truyện */
+/* link */
+.Link {
+   padding: 5px 5px;
+   background: rgb(201, 201, 201);
+}
+
+/* Container */
+.container {
+    background-color: #ffffff;
+}
+
+/* Thông tin về truyền */
+.MangaContent {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin-bottom: 20px;
+}
+
+/* hình ảnh */
+.MangaImage {
+    display: flex;
+    justify-content: center;
+}
+
+/* tên truyện */
+.MangaName {
+    height: 80%;
+    justify-content: center; 
+    font-size: 24px; 
+    padding: 20px 20px;
+    cursor: default;
+}
+
+/* Dòng thông tin */
+.Info-row {
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+/* Tên thông tin */
+.InfoName {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    margin: 0 0 5px;
+    cursor: default;
+}
+
+/* Nội dung thông tin */
+.InfoDetail {
+    color: rgb(0, 0, 0);  
+    margin-left: 20px;
+    cursor: default;
+}
+
+/* Nút tương tác */
+.InteractButton {
+    padding: 12px 20px;
+    font-family: 'inter';
+    font-size: 14px;
+    background-color: #1e1e1e;
+    color:rgb(255, 255, 255);
+    border-radius: 5px;
+    border: none;
+    transition-duration: 0.4s;
+    margin: 2px; 
+    cursor: pointer;
+}
+
+.InteractButton:hover {
+    background-color: rgb(185, 185, 185);
+   
+}
+
+/* Nút tương tác (nút like) */
+.btnReadLike{
+    background-color: rgb(255, 30, 97);
+}
+
+/* Phần Nội dung */
+.list-view {
+    margin: 0 0 10px 10px;
+    cursor: default;
+}
+
+/* Nội dung truyện */
+.Manga-Review {
+    margin-top: 10px;
+    cursor: default;
+}
+
+/* Phần các tập truyện */
+.list-chapter {
+    height: 300px;
+    border: 1px solid #aaaaaa;
+    overflow: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+    
+/* Phần trên list */
+.heading-list-chapter {
+    margin-top: 10px;
+    display: grid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #aaaaaa;
+    grid-template-columns: 50% 25% 25%;
+    background-color: rgb(230, 240, 255);
+    padding: 5px 10px;
+    cursor: default;
+}
+
+/* Chương */
+.chapter-row {
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    background-color: rgb(248, 248, 248);
+    padding: 5px 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.chapter-row:hover {
+    background-color: rgb(123, 123, 123);
+    color:#ffffff
+}
+
+/* footer */
+.footer{
+    background: #000000;
+}
+
+/* nút ở footer */
+.keyword-btn{
+    color: white; 
+    background-color: #000000; 
+    border: 1px solid white; 
+    border-radius: 5px; 
+    padding: 10px 20px;;
+    margin: 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.keyword-btn:hover {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: black ;
+}
+
+/* Phần tài khoản */
+.User_view {
+    display: grid;
+    grid-template-columns: 250px auto;
+}
+
+.name_and_image {
+    color: #ffffff;
+    display: flex;
+    background-color: #1e1e1e;
+    margin: 5px;
+    padding: 5px;
+}
+
+.name_info {
+    padding: 10px;
+}
+
+.name_info .info {
+    color: #939393;
+    font-size: 12px;
+}
+
+.name_info .name {
+    font-size: 14px;
+}
+
+.user_nav_bar{
+    background-color: #ffffff;
+    margin: 5px;
+    border-style: outset;
+    border-color: #adadad48;
+}
+
+.user_nav_bar .nav_row{
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    border-left: 3px solid rgb(0, 0, 0);
+}
+
+.user_nav_bar .nav_row .row{
+    text-decoration: none;
+
+    
+}
+
+.user_nav_bar .nav_row:hover{
+    background-color: #adadad;
+    transition-duration: 0.3s;
+    border-left: 3px solid rgb(255, 0, 0);
+}
+
+.Detail_information {
+    margin: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-style: outset;
+    border-color: #adadad48;
+}
+
+/* Phần các tập truyện */
+.Favor_list-view .list-favor {
+    height: 300px;
+    border: 1px solid #aaaaaa;
+    overflow: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+    
+/* Phần trên list */
+.heading-list-favor {
+    margin-top: 10px;
+    display: grid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #aaaaaa;
+    grid-template-columns: 50% 25% 25%;
+    background-color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    cursor: default;
+    color: #ffffff;
+}
+
+/* Chương */
+.favor-row {
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    background-color: rgb(248, 248, 248);
+    padding: 5px 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.favor-row:hover {
+    background-color: rgb(123, 123, 123);
+    color:#ffffff
+}
+
+
+/* Màn hình thu nhỏ */
+@media only screen and (max-width: 1000px){
+    .topmenu {
+        height: 1px;
+        transition: all 0.3s ease;
+    }
+    
+    .Nav_Menu {
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .header {
+        grid-template-columns: 10% 60% 30%;
+        height: 100px;
+    }
+    .MangaContent{
+        display: block;
+    }
+    .MangaInfo{
+        padding: 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body{
+        width: 500px;
+    }
+    
+    
+    #btnLogin {
+        margin-right: 10px;
+    }
+
+    .container{
+        width: 500px;
+    }
+
+}

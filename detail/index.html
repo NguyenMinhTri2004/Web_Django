@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga: The WibuZone</title>
+    <link rel="stylesheet" href="CSS/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="JS/UI.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <!-- Logo webside -->
+        <div class="web-logo">
+            <img src="Element/Image/HeaderLogo.png" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;">
+        </div>
+        
+        <!-- Tìm kiếm -->
+        <div class="search-holder">
+            <!-- Nút tìm kiếm -->
+            <button id="btnSearch" name="btnSearch">
+                <i class="fa-solid fa-magnifying-glass"></i>
+             </button>
+            <!-- Ô nhập thông tin tìm kiếm -->
+            <input id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
+        </div>
+
+        <!-- Đăng nhập-->
+        <div class="login-function">
+            <!-- Nút đăng nhập -->
+            <button id="btnLogin" onclick="OpenLogin()">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </div>      
+    </div>
+
+    <!-- Topmenu -->
+    <div class="topmenu">
+        <ul>
+            <li> <a class="Nav_Menu" href = "">TRANG CHỦ</a></li>
+            <li> <a class="Nav_Menu" href = "">MỚI RA MẮT</a></li>
+            <li> <a class="Nav_Menu" href = "">THỂ LOẠI</a></li>
+            <li> <a class="Nav_Menu" href = "">CÂP NHẬT</a></li>
+            <li> <a class="Nav_Menu" href = "">TRUYỆN HOT</a></li>
+            <li> <a class="Nav_Menu" href = "">YÊU THÍCH</a></li>
+        </ul>
+    </div>
+
+    <!-- Nơi hiện ra vị trí các trang -->
+    <div class="Link">
+        <a href="#"><i class="fa-solid fa-house"></i></a> 
+        <a href="#">Tài khoản</a> >
+        <a href="#" style="color: #000000;"><b>Đại bàn tung cánh </b></b></a> 
+    </div> 
+    
+    <div class="container">
+        <div class="User_view">
+            <div class="information_view">
+                <div class="name_and_image">
+                    <img src="Element/Image/219983.png" class="user_image" alt="user_image" style="width: 50px; height: 50px;">
+                    <div class="name_info">
+                        <label class="info">Tài khoản này thuộc về</label><br>
+                        <label class="name">ĐẠI BÀNG TUNG CÁNH</label>
+                    </div>
+                </div>
+                <ul class="user_nav_bar">
+                    <li class="nav_row">
+                        <a href="" class="row">Thông tin chung</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Thông tin tài khoản</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Truyện theo dỗi</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Truyện đã đăng</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Mật khẩu</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Bình luận</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Thông báo</a>
+                    </li>
+                    <li class="nav_row">
+                        <a href="" class="row">Đổi mật khẩu</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content_view">
+                <div class="Detail_content" style="margin: 10px;">
+                    <label style="font-size: 24px; font-weight: bold;">THÔNG TIN CHUNG</label>
+                </div>
+                <div class="Detail_content" style="margin: 20px;">
+                    <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">THÔNG TIN TÀI KHOẢN</label>
+                </div>
+                <div class="Detail_information">
+                    <label class="information_row">Họ và tên: </label><br>
+                    <label class="information_row">Email: </label><br>
+                    <label class="information_row">Số điện thoại: </label>
+                </div>
+
+                <div class="Favor">
+                    <div class="Detail_content" style="margin: 20px;">
+                        <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN THEO DÕI</label>
+                    </div>
+
+                    <div class="Favor_list-view" style="margin: 20px;">
+                        <!-- phần trên list -->
+                        <div class="heading-list-favor">
+                            <div class="col-name">Tên truyệm</div>
+                            <div class="col-update">Xem gần nhất</div>
+                            <div class="col-view">Chap mới nhất</div>
+                        </div>
+                        
+                        <!-- list các trương -->
+                        <div class="list-chapter">
+                            <ul class="list-chapter-review">
+                                <li class="favor-row">
+                                    <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
+                                    <div class="favor-update">hahahah</div>
+                                    <div class="favor-chapter">70000</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Favor">
+                    <div class="Detail_content" style="margin: 20px;">
+                        <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN ĐÃ ĐĂNG</label>
+                    </div>
+
+                    <div class="Favor_list-view" style="margin: 20px;">
+                        <!-- phần trên list -->
+                        <div class="heading-list-favor">
+                            <div class="col-name">Tên truyện</div>
+                            <div class="col-update">Ngày đăng</div>
+                            <div class="col-view">Nội dung</div>
+                        </div>
+                        
+                        <!-- list các trương -->
+                        <div class="list-chapter">
+                            <ul class="list-chapter-review">
+                                <li class="favor-row">
+                                    <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
+                                    <div class="favor-update">hahahah</div>
+                                    <div class="favor-chapter">70000</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="Element/Image/HeaderLogo.png" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;"><br>
+        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Chính sách bảo mật<br></label>
+        <br>
+        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Từ khóa: <br></label>
+        <div class="footer-button" style="margin: 10px">
+            <button class="keyword-btn">Anime</button>
+            <button class="keyword-btn">Chinese</button>
+            <button class="keyword-btn">Action</button>
+            <button class="keyword-btn">Vietnamese</button>
+            <button class="keyword-btn">Horror</button>
+            <button class="keyword-btn">Love</button>
+        </div>
+        <hr>
+        <div style="display:flex; justify-content: center; color: #FFF4F9;; font-size: 16px;">
+            <label>@2022 - sàobnoiwuuiwsàobnoiwuuiw</label>
+        </div>          
+    </div>
+
+    <!-- Đăng nhập -->
+    <div id="Login" class="modal" style="display: none;">
+        <div id="frmLogin">
+            <button id="btnCloseFrm" onclick="ExitLog()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="TopFrm">
+                <br><label style="font-size:24px; color: #000000; float: left; margin-left: 155px"><b>ĐĂNG NHẬP</b></label>
+            </div>
+
+            <div class="CenterLog">
+                <label class="labLog" for="txtUsername"><b>Tên người dùng</b></label><br>
+                <input class="txtLog" type="text" placeholder="Nhập tên người dùng!" name="txtUsername" id="txtUsernameLogin"><br>
+            
+                <label class="labLog" for="txtPassword"><b>Mật khẩu</b></label><br>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPassword" id="txtPasswordLogin">
+                    <label style="position: absolute; left: 410px; top: 20px" >
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtPasswordLogin')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
+
+                <button class="btnSubmit" type="submit" onclick="CheckLoginInput()">ĐĂNG NHẬP</button>
+            </div>  
+
+            <div class="BotFrm">
+                <hr>
+                <span>Chưa có tài khoản? <a href="#" onclick="OpenRegister()"><b>Đăng ký ngay!</b></a></span>
+            </div>
+        </div>
+    </div>
+    <!-- Đăng ký  -->
+    <div id="Register" class="modal" style="display: none;">
+        <div id="frmRegister">            
+            <button id="btnCloseFrm" onclick="ExitLog()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="TopFrm">       
+                <br><label style="font-size:24px; color: #000000; float: left; margin-left: 170px"><b>ĐĂNG KÝ</b></label>
+            </div>
+
+            <div class="CenterLog">
+                <label class="labLog" for="txtUsername"><b>Tên người dùng</b></label><br>
+                <input class="txtLog" type="text" placeholder="Nhập tên người dùng" name="txtUsernameRegister" id="txtUsernameRegister"><br>
+            
+                <label class="labLog" for="txtNumberPhone"><b>Số điện thoại</b></label><br>
+                <input class="txtLog" type="text" placeholder="Nhập số điện thoại!" name="txtNumberPhoneRegister" id="txtNumberPhoneRegister"><br>
+                
+                <label class="labLog" for="txtEmail"><b>Email</b></label><br>
+                <input class="txtLog" type="text" placeholder="Nhập Email!" name="txtEmailRegister" id="txtEmailRegister"><br>
+                        
+                <label class="labLog" for="txtPassword"><b>Mật khẩu</b></label><br>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPasswordRegister" id="txtPasswordRegister">
+                    <label style="position: absolute; left: 410px; top: 20px">
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtPasswordRegister')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
+
+                <label class="labLog" for="txtRePassword"><b>Xác nhận mật khẩu</b></label><br>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập lại mật khẩu!" name="txtRePasswordRegister" id="txtRePasswordRegister">
+                    <label style="position: absolute; left: 410px; top: 20px" >
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtRePasswordRegister')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
+
+                <button class="btnSubmit" type="submit" onclick="CheckRegisterInput()">Đăng ký</button>
+            </div>  
+            
+            <div class="BotFrm">
+                <hr>
+                <span>Đã có tài khoản? <a href="#" onclick="OpenLogin()"><b>Đăng nhập ngay!</b></a></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
