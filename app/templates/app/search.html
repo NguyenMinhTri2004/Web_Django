@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block main-content %}
+    <div style="display : flex ; gap : 20px;" >
+        {% for manga in result %}
+                <a href="/manga/{{ manga.idManga }}">
+                    <div style="width : 250px ; height : 420px;  cursor : pointer ; border : 1px solid #ccc" >
+                    <div></div>
+                        <img src= "static/images/{{manga.image}}"/>
+
+                        <p style="font-weight : bold; font-size : 13px" >{{manga.name}}</p>
+                    </div>
+                </a>
+        {% endfor %}
+    </div>
+{% endblock main-content %}

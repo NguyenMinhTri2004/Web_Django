@@ -1,0 +1,97 @@
+
+{% extends 'app/base.html' %}
+{% load static %}
+{% block main-content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Manga</title>
+    <link rel="stylesheet" href="{%static 'app/css/Style.css' %}">
+    <link rel="stylesheet" href="{%static 'app/css/chart.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    {% comment %} <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> {% endcomment %}
+    
+</head>
+
+<body>
+  
+        {% comment %} <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+          ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+      
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/swiper/js/swiper.min.js"></script> {% endcomment %}
+      <div>
+        {% comment %} <div>
+            <h2 style="color:blue; margin-left: 65px ; margin-top : 40px" >Truyện nổi bật</h2>
+      
+            <div style="display : flex ; gap : 10px ; flex-wrap: wrap ; align-items : center ; justify-content : center ; margin :50px 0px;">
+                {% for manga in mangaList %}
+                      <a href="/manga/{{ manga.idManga }}">
+                        <div style="width : 250px ; height : 420px;  cursor : pointer ; border : 1px solid #ccc" >
+                          <div></div>
+                              <img src= "static/images/{{manga.image}}"/>
+          
+                              <p style="font-weight : bold; font-size : 13px" >{{manga.name}}</p>
+                        </div>
+                      </a>
+                {% endfor %}
+            </div>
+        </div> {% endcomment %}
+  
+        <div>
+          <h2 style="color:blue; margin-left: 65px ; margin-top : 40px" >Truyện Manga</h2>
+  
+          <div style="display : flex ; gap : 10px ; flex-wrap: wrap ; align-items : center ; justify-content : center ; margin :50px 0px;">
+              {% for manga in mangaList %}
+                    <a href="/manga/{{ manga.idManga }}">
+                      <div style="width : 250px ; height : 420px;  cursor : pointer ; border : 1px solid #ccc" >
+                        <div></div>
+                            <img src= "static/images/{{manga.image}}"/>
+        
+                            <p style="font-weight : bold; font-size : 13px" >{{manga.name}}</p>
+                      </div>
+                    </a>
+              {% endfor %}
+          </div>
+      </div>
+  
+        <div>
+          <h2 style="color:blue; margin-left: 65px ; margin-top : 40px" >Truyện Manhua</h2>
+  
+          <div style="display : flex ; gap : 10px ; flex-wrap: wrap ; margin :50px 0px;">
+              {% for manga in manhuaList %}
+                    <a href="/manga/{{ manga.idManga }}">
+                      <div style="width : 250px ; height : 420px;  cursor : pointer ; border : 1px solid #ccc" >
+                        <div></div>
+                            <img src= "static/images/{{manga.image}}"/>
+        
+                            <p style="font-weight : bold; font-size : 13px" >{{manga.name}}</p>
+                      </div>
+                    </a>
+              {% endfor %}
+          </div>
+      </div>
+      </div>
+</body>
+{% endblock main-content %}

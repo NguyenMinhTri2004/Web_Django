@@ -1,0 +1,98 @@
+{% comment %} {% extends 'app/base.html' %} {% endcomment %}
+{% load static %}
+    <link rel="stylesheet" href="{%static 'app/css/Style.css' %}">
+    <link rel="stylesheet" href="{%static 'app/css/chart.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="{%static 'app/js/UI.js' %}"></script>
+
+    <div style = "display: flex ; width: 100%" class="User_view">
+        <div class="information_view">
+            <div class="name_and_image">
+                <img src="{%static 'app/images/avt.png' %}" class="user_image" alt="user_image" style="width: 50px; height: 50px;">
+                <div class="name_info">
+                    <label class="info">Tài khoản này thuộc về</label><br>
+                    <label class="name">{{request.user}}</label>
+                </div>
+            </div>
+            <ul class="user_nav_bar">
+                <li class="nav_row">
+                    <a href="" class="row">Thông tin chung</a>
+                </li>
+                <li class="nav_row">
+                    <a href="" class="row">Thông tin tài khoản</a>
+                </li>
+                <li class="nav_row">
+                    <a href="" class="row">Truyện theo dỗi</a>
+                </li>
+                <li class="nav_row">
+                    <a href="" class="row">Mật khẩu</a>
+                </li>
+            </ul>
+        </div>
+        <div class="content_view">
+            <div class="Detail_content" style="margin: 10px;">
+                <label style="font-size: 24px; font-weight: bold;">THÔNG TIN CHUNG</label>
+            </div>
+            <div class="Detail_content" style="margin: 20px;">
+                <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">THÔNG TIN TÀI KHOẢN</label>
+            </div>
+            <div class="Detail_information">
+                <label class="information_row">Email: {{request.user.email}}</label><br>
+            </div>
+
+            <div class="Favor">
+                <div class="Detail_content" style="margin: 20px;">
+                    <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN THEO DÕI</label>
+                </div>
+
+                <div class="Favor_list-view" style="margin: 20px;">
+                    <!-- phần trên list -->
+                    <div class="heading-list-favor">
+                        <div class="col-name">Tên truyệm</div>
+                        <div class="col-update">Xem gần nhất</div>
+                        <div class="col-view">Chap mới nhất</div>
+                    </div>
+                    
+                    <!-- list các trương -->
+                    <div class="list-chapter">
+                        <ul class="list-chapter-review">
+                            <li class="favor-row">
+                                <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
+                                <div class="favor-update">hahahah</div>
+                                <div class="favor-chapter">70000</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% comment %} <div class="Favor">
+                <div class="Detail_content" style="margin: 20px;">
+                    <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN ĐÃ ĐĂNG</label>
+                </div>
+
+                <div class="Favor_list-view" style="margin: 20px;">
+                    <!-- phần trên list -->
+                    <div class="heading-list-favor">
+                        <div class="col-name">Tên truyện</div>
+                        <div class="col-update">Ngày đăng</div>
+                        <div class="col-view">Nội dung</div>
+                    </div>
+                    
+                    <!-- list các trương -->
+                    <div class="list-chapter">
+                        <ul class="list-chapter-review">
+                            <li class="favor-row">
+                                <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
+                                <div class="favor-update">hahahah</div>
+                                <div class="favor-chapter">70000</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+
+

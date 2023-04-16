@@ -1,0 +1,358 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Manga</title>
+    <link rel="stylesheet" href="{%static 'app/css/Style.css' %}">
+    <link rel="stylesheet" href="{%static 'app/css/chart.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <script src="{%static 'app/js/UI.js' %}"></script>
+</head>
+
+<body>
+    <div class="header">
+        <!-- Logo webside -->
+        <a href = "/" class="web-logo">
+            <img src="{%static 'app/images/HeaderLogo.png' %}" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;">
+        </a>
+        
+        <!-- Tìm kiếm -->
+        <div class="search-holder">
+            <!-- Nút tìm kiếm -->
+            <form method="POST" action="/search">
+                {% csrf_token %}
+                <button id="btnSearch" type = "submit" name="btnSearch">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                 </button>
+                <!-- Ô nhập thông tin tìm kiếm -->
+                <input id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
+            </form>
+        </div>
+
+        <!-- Đăng nhập-->
+        <div class="login-function">
+            <!-- Nút đăng nhập -->
+            <a href = "/profile" style="color:white" >Hello {{request.user}}<span/>
+            <a href="/logout" >Logout</a>
+            <button id="btnLogin" onclick="OpenLogin()">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+            
+        </div>      
+    </div>
+
+    <!-- Topmenu -->
+    <div class="topmenu">
+        <ul>
+            <li> <a href = "/">TRANG CHỦ</a></li>
+            <li> <a href = "/new">MỚI RA MẮT</a></li>
+            <li> <a href = "/hot">TRUYỆN HOT</a></li>
+            <li> <a href = "/favorite">YÊU THÍCH</a></li>
+        </ul>
+    </div>
+
+    <!-- Nơi hiện ra vị trí các trang -->
+    <div class="Link">
+        <a href="#"><i class="fa-solid fa-house"></i></a> 
+        <a href="#"><b>Truyện</b></a> >>
+        <a href="#" style="color: #000000;"><b>Record of Ragnarok</b></b></a> 
+    </div> 
+    
+    <div style = "display: flex; gap : 1px ; align-items : start" class = "">
+        {% block main-content %}
+    
+        {% endblock main-content %}
+
+        {% comment %} <div class = "chart-container">
+            <div class="visited-comics">
+                <div class="box darkBox">
+                    <h2>
+                        Lịch sử xem truyện
+                        <a class="view-all" href="/lichsu">Xem tất cả</a>
+                    </h2>
+                    <ul class="list-unstyled">
+                        <li class="clearfix">
+                            <div class="t-item">
+                                <a class="thumb" title="Ta Làm Kiêu Hùng Tại Dị Giới" href=""><img class="center"  src="https://st.nettruyenvt.com/data/comics/92/ta-lam-kieu-hung-tai-di-gioi.jpg" alt="Ta Làm Kiêu Hùng Tại Dị Giới"></a>
+                                <h3 class="title"><a href="">Ta Làm Kiêu Hùng Tại Dị Giới</a></h3>
+                                <p class="chapter">
+                                    <a href="">Đọc tiếp chapter</a>
+                                    <span class="view pull-right">
+                                        <a class="visited-remove" href="#">
+                                            <i class="fa fa-times">
+                                            </i>
+                                            Xóa
+                                        </a>
+                                    </span>
+                                </p>    
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="comic-wrap">
+                <div class="Module-Content">
+                    <div class="box-tab box darkBox">
+                        <ul class="tab-nav clearfix">
+                            <li><a rel="nofollow" title="BXH truyện tranh theo tháng" class="active" href="">Top tháng</a></li>
+                            <li><a rel="nofollow" title="BXH truyện tranh theo tuần" class="active" href="">Top tuần</a></li>
+                            <li><a rel="nofollow" title="BXH truyện tranh theo ngày" class="active" href="">Top ngày</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane">
+                <div id="topMonth"><ul class="list-unstyled">
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos1">01</span>
+                    <div class="t-item comic-item" data-id="17696">
+                    <a class="thumb" title="Truyện tranh Võ Luyện Đỉnh Phong" href="https://www.nettruyenvt.com/truyen-tranh/vo-luyen-dinh-phong-176960">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/32/vo-luyen-dinh-phong.jpg" data-original="//st.nettruyenvt.com/data/comics/32/vo-luyen-dinh-phong.jpg" alt="Võ Luyện Đỉnh Phong">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/vo-luyen-dinh-phong-176960">Võ Luyện Đỉnh Phong</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="977229" href="https://www.nettruyenvt.com/truyen-tranh/vo-luyen-dinh-phong/chap-3196/977229" title="Chapter 3196">Chapter 3196</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 29M</span>
+                    </p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos2">02</span>
+                    <div class="t-item comic-item" data-id="76852">
+                    <a class="thumb" title="Truyện tranh Trùng Sinh Trở Lại 1983 Làm Phú Hào" href="https://www.nettruyenvt.com/truyen-tranh/trung-sinh-tro-lai-1983-lam-phu-hao-76852">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/52/trung-sinh-tro-lai-1983-lam-phu-hao.jpg" data-original="//st.nettruyenvt.com/data/comics/52/trung-sinh-tro-lai-1983-lam-phu-hao.jpg" alt="Trùng Sinh Trở Lại 1983 Làm Phú Hào">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/trung-sinh-tro-lai-1983-lam-phu-hao-76852">Trùng Sinh Trở Lại 1983 Làm Phú Hào</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="973094" href="https://www.nettruyenvt.com/truyen-tranh/trung-sinh-tro-lai-1983-lam-phu-hao/chap-258/973094" title="Chapter 258" class="visited">Chapter 258</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 12M</span>
+                    </p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos3">03</span>
+                    <div class="t-item comic-item" data-id="26253">
+                    <a class="thumb" title="Truyện tranh Tiên Võ Đế Tôn" href="https://www.nettruyenvt.com/truyen-tranh/tien-vo-de-ton-262530">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/141/tien-vo-de-ton.jpg" data-original="//st.nettruyenvt.com/data/comics/141/tien-vo-de-ton.jpg" alt="Tiên Võ Đế Tôn">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/tien-vo-de-ton-262530">Tiên Võ Đế Tôn</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="973960" href="https://www.nettruyenvt.com/truyen-tranh/tien-vo-de-ton/chap-421/973960" title="Chapter 421">Chapter 421</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 9.270K</span>
+                    </p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos4">04</span>
+                    <div class="t-item comic-item" data-id="21948">
+                    <a class="thumb" title="Truyện tranh Đại Quản Gia Là Ma Hoàng" href="https://www.nettruyenvt.com/truyen-tranh/dai-quan-gia-la-ma-hoang-219482">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/188/dai-quan-gia-la-ma-hoang.jpg" data-original="//st.nettruyenvt.com/data/comics/188/dai-quan-gia-la-ma-hoang.jpg" alt="Đại Quản Gia Là Ma Hoàng">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/dai-quan-gia-la-ma-hoang-219482">Đại Quản Gia Là Ma Hoàng</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="976026" href="https://www.nettruyenvt.com/truyen-tranh/dai-quan-gia-la-ma-hoang/chap-379/976026" title="Chapter 379">Chapter 379</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 8.454K</span>
+                    </p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos5">05</span>
+                    <div class="t-item comic-item" data-id="22182">
+                    <a class="thumb" title="Truyện tranh Ngạo Thị Thiên Địa" href="https://www.nettruyenvt.com/truyen-tranh/ngao-thi-thien-dia-221820">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/166/ngao-thi-thien-dia.jpg" data-original="//st.nettruyenvt.com/data/comics/166/ngao-thi-thien-dia.jpg" alt="Ngạo Thị Thiên Địa">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/ngao-thi-thien-dia-221820">Ngạo Thị Thiên Địa</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="976732" href="https://www.nettruyenvt.com/truyen-tranh/ngao-thi-thien-dia/chap-564/976732" title="Chapter 564">Chapter 564</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 7.726K</span>
+                    </p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos6">06</span>
+                    <div class="t-item comic-item" data-id="32846">
+                    <a class="thumb" title="Truyện tranh Nghịch Thiên Chiến Thần" href="https://www.nettruyenvt.com/truyen-tranh/nghich-thien-chien-than-328460">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/78/nghich-thien-chien-than.jpg" data-original="//st.nettruyenvt.com/data/comics/78/nghich-thien-chien-than.jpg" alt="Nghịch Thiên Chiến Thần">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/nghich-thien-chien-than-328460">Nghịch Thiên Chiến Thần</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="970452" href="https://www.nettruyenvt.com/truyen-tranh/nghich-thien-chien-than/chap-321/970452" title="Chapter 321">Chapter 321</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 7.576K</span>
+                    </p>
+                    </div>
+                    </li>
+                    <li class="clearfix">
+                    <span class="txt-rank fn-order pos7">07</span>
+                    <div class="t-item comic-item" data-id="77404">
+                    <a class="thumb" title="Truyện tranh Ta Làm Kiêu Hùng Tại Dị Giới" href="https://www.nettruyenvt.com/truyen-tranh/ta-lam-kieu-hung-tai-di-gioi-77404">
+                    <img class="lazy center" src="//st.nettruyenvt.com/data/comics/92/ta-lam-kieu-hung-tai-di-gioi.jpg" data-original="//st.nettruyenvt.com/data/comics/92/ta-lam-kieu-hung-tai-di-gioi.jpg" alt="Ta Làm Kiêu Hùng Tại Dị Giới">
+                    </a>
+                    <h3 class="title">
+                    <a href="https://www.nettruyenvt.com/truyen-tranh/ta-lam-kieu-hung-tai-di-gioi-77404">Ta Làm Kiêu Hùng Tại Dị Giới</a>
+                    </h3>
+                    <p class="chapter top">
+                    <a data-id="976919" href="https://www.nettruyenvt.com/truyen-tranh/ta-lam-kieu-hung-tai-di-gioi/chap-180/976919" title="Chapter 180" class="visited">Chapter 180</a>
+                    <span class="view pull-right">
+                    <i class="fa fa-eye">
+                    </i> 7.158K</span>
+                    </p>
+                    </div>
+                    </li>
+                    </ul>
+                </div>
+                <div id="topWeek"></div>
+                <div id="topDay"></div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+
+    <div class="footer">
+        <img src="{%static 'app/images/HeaderLogo.png' %}"  alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;"><br>
+        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Chính sách bảo mật<br></label>
+        <br>
+        <label style="color: #FFF4F9; font-size: 16px; margin-left:45px">Từ khóa: <br></label>
+        <div class="footer-button" style="margin: 10px">
+            <button class="keyword-btn">Anime</button>
+            <button class="keyword-btn">Chinese</button>
+            <button class="keyword-btn">Action</button>
+            <button class="keyword-btn">Vietnamese</button>
+            <button class="keyword-btn">Horror</button>
+            <button class="keyword-btn">Love</button>
+        </div>
+        <hr>
+        <div style="display:flex; justify-content: center; color: #FFF4F9;; font-size: 16px;">
+            <label>@2022 - sàobnoiwuuiwsàobnoiwuuiw</label>
+        </div>          
+    </div>
+
+    <!-- Đăng nhập -->
+    <div id="Login" class="modal" style="display: none;">
+        <div id="frmLogin">
+            <button id="btnCloseFrm" onclick="ExitLog()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="TopFrm">
+                <br><label style="font-size:24px; color: #000000; float: left; margin-left: 155px"><b>ĐĂNG NHẬP</b></label>
+            </div>
+
+            <form class="CenterLog" method="POST" action="/login"  >
+                {% csrf_token %}
+                <label class="labLog" for="txtUsername"><b>Tên người dùng</b></label><br>
+                <input class="txtLog" type="text" placeholder="Nhập tên người dùng!" name="txtUsername" id="txtUsernameLogin"><br>
+            
+                <label class="labLog" for="txtPassword"><b>Mật khẩu</b></label><br>
+                <div style="position: relative;"> 
+                    <input class="txtLog" type="password" placeholder="Nhập mật khẩu!" name="txtPassword" id="txtPasswordLogin">
+                    <label style="position: absolute; left: 410px; top: 20px" >
+                        <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtPasswordLogin')">
+                        <i class="fa-solid fa-eye" style="color: #000000"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                    </label>
+                </div>
+
+                <button class="btnSubmit" type="submit" onclick="CheckLoginInput()">ĐĂNG NHẬP</button>
+            </form>  
+
+            <div class="BotFrm">
+                <hr>
+                <span>Chưa có tài khoản? <a href="#" onclick="OpenRegister()"><b>Đăng ký ngay!</b></a></span>
+                {% for message in messages %}
+                     <p>{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Đăng ký  -->
+
+    <div id="Register" class="modal" style="display: none;">
+        <div id="frmRegister">            
+            <button id="btnCloseFrm" onclick="ExitLog()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="TopFrm">       
+                <br><label style="font-size:24px; color: #000000; float: left; margin-left: 170px"><b>ĐĂNG KÝ</b></label>
+            </div>
+
+            <form method="POST" action="/" class="CenterLog">
+                {% csrf_token %}
+        
+                <div>
+                    <label class="labLog" for="txtUsername"><b>Tên người dùng</b></label><br>
+                    {{form.username}}
+                </div>
+                
+                <div>
+                    <label class="labLog" for="txtEmail"><b>Email</b></label><br>
+                    {{form.email}}
+                </div>
+
+                <div>
+                    <label class="labLog" for="txtPassword"><b>Mật khẩu</b></label><br>
+                    <div style="position: relative;"> 
+                        {{form.password1}}
+                        {% comment %} <label style="position: absolute; left: 410px; top: 20px">
+                            <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtPasswordRegister')">
+                            <i class="fa-solid fa-eye" style="color: #000000"></i>
+                            <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                        </label> {% endcomment %}
+                    </div>
+                </div>
+
+
+                <div>
+                    <label class="labLog" for="txtRePassword"><b>Xác nhận mật khẩu</b></label><br>
+                    <div style="position: relative;"> 
+                        {{form.password2}}
+                        {% comment %} <label style="position: absolute; left: 410px; top: 20px" >
+                            <input type="checkbox" id="eyecheck" style="display:none;" checked="checked" onclick="HideShowPassword('txtRePasswordRegister')">
+                            <i class="fa-solid fa-eye" style="color: #000000"></i>
+                            <i class="fa-solid fa-eye-slash" style="color: #000000"></i>
+                        </label> {% endcomment %}
+                </div>
+                        
+
+                </div>
+
+                <button class="btnSubmit" type="submit">Đăng ký</button>
+            </form>  
+            
+            <div class="BotFrm">
+                <hr>
+                <span>Đã có tài khoản? <a href="#" onclick="OpenLogin()"><b>Đăng nhập ngay!</b></a></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+

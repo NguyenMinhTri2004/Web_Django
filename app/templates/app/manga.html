@@ -1,0 +1,99 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block main-content %}
+    <div class="MangaPage">
+        <!-- tên truyện -->
+        <div class="MangaName" style="display:flex; justify-content: center; font-size: 24px; padding: 20px 20px; text-align: center;">
+            <p><b>{{manga.name}}</b></p>
+        </div>
+        <!-- Thông tin về truyện -->
+        <div style="display : flex ; align-items : center ; gap : 20px" class="MangaContent">
+            <!-- Hình ảnh -->
+            <div class="MangaImage">
+                <img src= "/static/images/{{manga.image}}" id="MainImageContent" style="width: 300px; height: 450px; border-radius: 10px;" >
+            </div>
+            <!-- Các thông tin chính -->
+            <div class="MangaInfo">
+                <!-- Tác giả -->
+                <div class="author Info-row">
+                    <p class="InfoName"><i class="fa-solid fa-book"></i> Tác giả:  </p>
+                    <p class="InfoDetail">{{manga.author}}</p>
+                </div>
+
+                <!-- Tình trạng  -->
+                <div class="status Info-row">
+                    <p class="InfoName"><i class="fa-solid fa-pen"></i> Tình trạng: <p>
+                    <p class="InfoDetail">{{manga.status}}</p>
+                </div>
+                
+                <!-- Thể loại truyện -->
+                <div class="category Info-row">
+                    <p class="InfoName"><i class="fa-solid fa-bookmark"></i> Thể loại: <p>
+                    <p class="InfoDetail">{{manga.category}}</p>
+                </div>
+
+                <!-- Lược xem -->
+                <div  class="view Info-row">
+                    <p class="InfoName"><i class="fa-solid fa-eye"></i> Lượt xem: <p>
+                    <p class="InfoDetail">{{sum}}</p>
+                </div>
+
+                <!-- Đánh giá -->
+                {% comment %} <div class="rate Info-row">
+                    <p class="InfoName"><i class="fa-solid fa-face-smile"></i> Đánh giá: <p>
+                    <p class="InfoDetail">
+                        <i class="fa-solid fa-star fa-beat"></i>
+                        <i class="fa-solid fa-star fa-beat"></i>
+                        <i class="fa-solid fa-star fa-beat"></i>
+                        <i class="fa-solid fa-star fa-beat"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </p>
+                </div> {% endcomment %}
+
+                <!-- Các nút tương tác -->
+                <div class="MangaInteract">
+                    <button class="InteractButton btnReadLike"><i class="fa-solid fa-heart"></i> Yêu thích</button>
+                    <a href="./chapter/1" class="InteractButton btnReadStart"><i class="fa-solid fa-play"></i> Đọc từ đầu</a>
+                    <a href="./chapter/{{length}}" class="InteractButton btnReadNew"><i class="fa-solid fa-forward-fast"></i> Đọc mới nhất</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần nội dung! -->
+        <div class="list-view">
+            <p class="title-list" style="font-size: 24px; color:rgb(45, 174, 255);"><i class="fa-solid fa-file"></i> NỘI DUNG</p>
+            <hr style="border-top: 2px solid rgb(45, 174, 255);">
+            <p class="Manga-Review"> Các vị thần mở hội nghị để bàn về sự sống còn của nhân loại. 
+            Tất cả đều quyết định "kết liễu" con người, chỉ duy một valkyrie đứng lên phản đối bằng cách đề nghị 1 cuộc chiến giữa thần và người. 
+            Cuộc chiến quyết định số phận của nhân loại này sẽ ra sao? Xin mời đón đọc.</p>
+        </div>
+
+        <!-- Phần các tập truyện -->
+        <div class="list-view">
+            <p class="title-list" style="font-size: 24px; color:rgb(45, 174, 255);"><i class="fa-solid fa-file"></i> DANH SÁCH CÁC CHƯƠNG</p>
+            <hr style="border-top: 2px solid rgb(45, 174, 255)">
+            
+            <!-- phần trên list -->
+            <div class="heading-list-chapter">
+                <div class="col-name">Số chương</div>
+                <div class="col-update">Cập nhật</div>
+                <div class="col-view">Lượt xem</div>
+            </div>
+            
+            <!-- list các trương -->
+            <div class="list-chapter">
+                <ul class="list-chapter-review">
+                    {% for chapter in chapterList %}
+                    <a href="./chapter/{{chapter.order}}">
+                        <li class="chapter-row">
+                            <div class="col-name">{{chapter.name}}</div>
+                            <div class="col-update">{{chapter.created_at}}</div>
+                            <div class="col-view">{{chapter.viewCount}}</div>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock main-content %}

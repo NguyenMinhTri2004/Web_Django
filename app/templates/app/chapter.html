@@ -1,0 +1,63 @@
+{% comment %} {% extends 'app/base.html' %} {% endcomment %}
+{% load static %}
+{% block main-content %}
+<link rel="stylesheet" href="{%static 'app/css/chapterHeader.css' %}">
+<link rel="stylesheet" href="{%static 'app/css/Style.css' %}">
+<link rel="stylesheet" href="{%static 'app/css/chart.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+     <body>
+       <div>
+            <div>
+                 <div class="top">
+                 <ul class="link">
+                      <li><a href="#">Trang chủ</a></li>
+                      <li><a href="#">Thể loại</a></li>
+                      <li><a href="#">Tên truyện</a></li>
+                      <li><a href="#">Chapter</a></li>
+                 </ul>
+                 <h1 class="tieu_de">
+                      <a href="#">Tên Truyện</a>
+                      <span>- {{chapterList.name}}</span>
+                 </h1>
+                 </div>
+                 <div class="bang_thao_tac">
+                      Nếu không xem được truyện vui lòng đổi "SERVER ẢNH" bên dưới
+                 <div class="server">
+                      <a class="btn btn_chon" href="#">Server 1</a>
+                      <a class="btn" href="#">Server 2</a>
+                 </div>
+                 <div class="bao_loi">
+                      <a class="btn_loi" href="#">Báo lỗi</a>
+                 </div>
+                 <div class="huong_dan">
+                      <i class="fa-solid fa-info"></i>
+                                
+                      <em>Sử dụng mũi tên trái (<-) hoặc phải (<-) để chuyển chapter</em>
+                 </div>
+                 <div class="chuyen_chap">
+                      <a class="home" href="/"><i class="fa-solid fa-house"></i></a>
+                      <a class="back_chaplist" href="#"><i class="fa-solid fa-list"></i></a>
+                      <a class="previous" href = "../{{chapterPrev}}"><i class="fa-solid fa-square-caret-left"></i></a>
+                  
+                      <a class="next" href = "../{{chapterNext}}"><i class="fa-solid fa-square-caret-right"></i></a>
+                      <a class="follow" href="#">
+                           <i class="fa-solid fa-star"></i>
+                           <span>Theo dõi</span>
+                      </a>
+                 </div>
+
+                 {% for chapter in chapterAll %}
+                      <a href = "../{{chapter.order}}">{{chapter.name}}</a> 
+                 {% endfor %}
+                 </div>
+            </div>  
+              <div style="display : flex ; align-items : center ; justify-content : center ; flex-direction : column";  >
+                   {% for image in chapterContent %}
+                          <img src="{{ image }}"/>
+                   {% endfor %}
+              </div>
+       </div>   
+     </body>
+{% endblock main-content %}
