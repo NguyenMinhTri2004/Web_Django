@@ -1,5 +1,8 @@
 {% extends 'app/base.html' %}
 {% load static %}
+<link rel="stylesheet" href="{%static 'app/css/comment.css' %}">
+
+
 {% block main-content %}
     <div class="MangaPage">
         <!-- tên truyện -->
@@ -39,16 +42,13 @@
                 </div>
 
                 <!-- Đánh giá -->
-                {% comment %} <div class="rate Info-row">
+                <div class="rate Info-row">
                     <p class="InfoName"><i class="fa-solid fa-face-smile"></i> Đánh giá: <p>
-                    <p class="InfoDetail">
-                        <i class="fa-solid fa-star fa-beat"></i>
-                        <i class="fa-solid fa-star fa-beat"></i>
-                        <i class="fa-solid fa-star fa-beat"></i>
-                        <i class="fa-solid fa-star fa-beat"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </p>
-                </div> {% endcomment %}
+                    <form action = "" method = "POST" class="InfoDetail">
+                        <input min = "1" max = "5" value="1" name = "ratting" type="number"/>
+                        <button type="submit" >Đánh giá</button>
+                    <form/>
+                </div>
 
                 <!-- Các nút tương tác -->
                 <div class="MangaInteract">
@@ -95,5 +95,57 @@
                 </ul>
             </div>
         </div>
+
+        <div class="comment">
+            <!-- comment form khi mà click vào sẽ hiện lên bảng để comment và gửi-->
+            <form action="" method="post" class="comment_form" id="comment_formId">
+                {% csrf_token %}
+                <textarea id="comment_text" class="form_control" name = "comment" placeholder="Nội dung bình luận" aria-hidden="true"
+                    style="display: block;"></textarea>
+                <div class="comment_info">
+                    <button type="submit" class="btn btn-primary" onclick="sendComment(0);return false;">
+                        Gửi
+                    </button>
+                </div>
+            </form>
+            {% comment %} <div class="comment_input" id="comment_inputId" onclick="showComment()">
+                <!-- function để hiện form comment và gửi -->
+                Mời bạn thảo luận, vui lòng không spam, share link kiếm tiền, thiếu lành mạnh,... để tránh bị khóa tài khoản
+            </div> {% endcomment %}
+            <div class="comment_list">
+                {% for comment in listComment %}
+                        <div class="a_comment">
+                            <!-- phần avatar của user-->
+                            <figure class="avatar">
+                                <img src="" alt="avatar" align="left">
+                            </figure>
+                            <!-- Tên user -->
+                            <div class="comment_name">
+                                {{comment.user}}
+                            </div>
+                            <!-- Nội dung comment của user-->
+                            <div class="comment_content">
+                                {{comment.context}}
+                            </div>
+                            {% comment %} <div class="comment_footer">
+                                <!--Reply lại comment của user -->
+                                <span onclick="replyComment()">
+                                    <i class="fa fa-comment">
+                                    </i> Trả lời</span>
+                                <!-- Like comment-->
+                                <span class="vote-up" onclick="voteComment()">
+                                    <i class="fa fa-thumbs-up">
+                                    </i>
+                                    <span class="vote-up-count">
+                                        0
+                                    </span>
+                                </span>
+                            </div> {% endcomment %}
+                        </div>
+                {% endfor %}
+              
+            </div>
+        </div>
     </div>
+    <script src="{%static 'app/js/Comment.js' %}"></script>
 {% endblock main-content %}
