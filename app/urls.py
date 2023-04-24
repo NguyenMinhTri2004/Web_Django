@@ -9,7 +9,7 @@ urlpatterns = [
     path('favorite', views.favorite),
     path('recommed', views.recommed),
     path('search', views.search),
-    path('profile', views.profile),
+    path('profile/<str:username>/<str:tabnumber>/', views.profile),
     path('register', views.register),
     path('hot', views.hot),
     path('login', views.Login),

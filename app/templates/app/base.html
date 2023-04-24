@@ -15,56 +15,59 @@
 </head>
 
 <body>
-    <div class="header">
-        <!-- Logo webside -->
-        <a href = "/" class="web-logo">
-            <img src="{%static 'app/images/HeaderLogo.png' %}" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;">
-        </a>
-        
-        <!-- Tìm kiếm -->
-        <div class="search-holder">
-            <!-- Nút tìm kiếm -->
-            <form method="POST" action="/search">
-                {% csrf_token %}
-                <button id="btnSearch" type = "submit" name="btnSearch">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                 </button>
-                <!-- Ô nhập thông tin tìm kiếm -->
-                <input id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
-            </form>
-        </div>
-
-        <!-- Đăng nhập-->
-        <div class="login-function">
-            <!-- Nút đăng nhập -->
-            <a href = "/profile" style="color:white" >Hello {{request.user}}<span/>
-            <a href="/logout" >Logout</a>
-            <button id="btnLogin" onclick="OpenLogin()">
-                <i class="fa-solid fa-right-to-bracket"></i>
-            </button>
-            
-        </div>      
-    </div>
-
-    <!-- Topmenu -->
-    <div class="topmenu">
-        <ul>
-            <li> <a href = "/">TRANG CHỦ</a></li>
-            <li> <a href = "/new">MỚI RA MẮT</a></li>
-            <li> <a href = "/hot">TRUYỆN HOT</a></li>
-            <li> <a href = "/favorite">YÊU THÍCH</a></li>
-            <li> <a href = "/recommed">TRUYỆN GỢI Ý</a></li>
-        </ul>
-    </div>
-
-    <!-- Nơi hiện ra vị trí các trang -->
-    <div class="Link">
-        <a href="#"><i class="fa-solid fa-house"></i></a> 
-        <a href="#"><b>Truyện</b></a> >>
-        <a href="#" style="color: #000000;"><b>Record of Ragnarok</b></b></a> 
-    </div> 
+   <div style = "position: fixed; top: 0; left: 0; width: 100%; z-index: 100 ; ">
+       <div style = "width: 100%;" class="header">
+           <!-- Logo webside -->
+           <a href = "/" class="web-logo">
+               <img src="{%static 'app/images/HeaderLogo.png' %}" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;">
+           </a>
+           
+           <!-- Tìm kiếm -->
+           <div class="search-holder">
+               <!-- Nút tìm kiếm -->
+               <form method="POST" action="/search">
+                   {% csrf_token %}
+                   <button id="btnSearch" type = "submit" name="btnSearch">
+                       <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                   <!-- Ô nhập thông tin tìm kiếm -->
+                   <input id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
+               </form>
+           </div>
+   
+           <!-- Đăng nhập-->
+           <div class="login-function">
+               <!-- Nút đăng nhập -->
+                  {% if request.user.is_authenticated %}
+                        <a href = "/profile/{{request.user}}/1" style="color:white" >Hello {{request.user}}<span/>
+                        <a href="/logout" >Logout</a>   
+                  {% else %}
+                        <a href = "/login" style="color:white" >Đăng nhập<span/>
+                  {% endif %}
+              
+               <button id="btnLogin" onclick="OpenLogin()">
+                   <i class="fa-solid fa-right-to-bracket"></i>
+               </button>
+               
+           </div>      
+       </div>
+   
+       <!-- Topmenu -->
+       <div style = "display : flex ; align-items : center ; overflow : hidden;" class="topmenu">
+           <ul style = "display: flex ; align-items: center ; justify-content: center" >
+               <li> <a href = "/">TRANG CHỦ</a></li>
+               <li> <a href = "/new">MỚI RA MẮT</a></li>
+               <li> <a href = "/hot">TRUYỆN HOT</a></li>
+               <li> <a href = "/favorite">YÊU THÍCH</a></li>
+               <li> <a href = "/recommed">TRUYỆN GỢI Ý</a></li>
+           </ul>
+       </div>
+   
+       <!-- Nơi hiện ra vị trí các trang -->
+       
+   </div> 
     
-    <div style = "display: flex; gap : 1px ; align-items : start" class = "">
+    <div style = "margin-top: 150px" class = "">
         {% block main-content %}
     
         {% endblock main-content %}

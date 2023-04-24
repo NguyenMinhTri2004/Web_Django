@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_jsonform',
+    'django_extensions',
     'django_better_admin_arrayfield',
-    'app'
+    'app',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +145,9 @@ MEDIA_URL = '/images/'
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )
+
+
+GRAPH_MODELS ={
+'all_applications': True,
+'graph_models': True,
+}

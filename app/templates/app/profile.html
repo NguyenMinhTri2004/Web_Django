@@ -1,98 +1,237 @@
-{% comment %} {% extends 'app/base.html' %} {% endcomment %}
+{% extends 'app/base.html' %}
 {% load static %}
+ 
+{% comment %} 
     <link rel="stylesheet" href="{%static 'app/css/Style.css' %}">
-    <link rel="stylesheet" href="{%static 'app/css/chart.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="{%static 'app/css/chart.css' %}"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <script src="{%static 'app/js/UI.js' %}"></script>
+    <script src="{%static 'app/js/UI.js' %}"></script> {% endcomment %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
-    <div style = "display: flex ; width: 100%" class="User_view">
-        <div class="information_view">
-            <div class="name_and_image">
-                <img src="{%static 'app/images/avt.png' %}" class="user_image" alt="user_image" style="width: 50px; height: 50px;">
-                <div class="name_info">
-                    <label class="info">Tài khoản này thuộc về</label><br>
-                    <label class="name">{{request.user}}</label>
-                </div>
-            </div>
-            <ul class="user_nav_bar">
-                <li class="nav_row">
-                    <a href="" class="row">Thông tin chung</a>
-                </li>
-                <li class="nav_row">
-                    <a href="" class="row">Thông tin tài khoản</a>
-                </li>
-                <li class="nav_row">
-                    <a href="" class="row">Truyện theo dỗi</a>
-                </li>
-                <li class="nav_row">
-                    <a href="" class="row">Mật khẩu</a>
-                </li>
-            </ul>
-        </div>
-        <div class="content_view">
-            <div class="Detail_content" style="margin: 10px;">
-                <label style="font-size: 24px; font-weight: bold;">THÔNG TIN CHUNG</label>
-            </div>
-            <div class="Detail_content" style="margin: 20px;">
-                <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">THÔNG TIN TÀI KHOẢN</label>
-            </div>
-            <div class="Detail_information">
-                <label class="information_row">Email: {{request.user.email}}</label><br>
-            </div>
-
-            <div class="Favor">
-                <div class="Detail_content" style="margin: 20px;">
-                    <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN THEO DÕI</label>
-                </div>
-
-                <div class="Favor_list-view" style="margin: 20px;">
-                    <!-- phần trên list -->
-                    <div class="heading-list-favor">
-                        <div class="col-name">Tên truyệm</div>
-                        <div class="col-update">Xem gần nhất</div>
-                        <div class="col-view">Chap mới nhất</div>
+    {% block main-content %}
+    <div style = "display: flex ; width: 100% ; align-content: center ; justify-content: center ; background-color : #f2f2f2 ; height : 100vh" class="User_view">
+       <div style = "display: flex ; background-color : white ; width : 70% ; height : 90% ; margin-top :20px">
+           <div class="information_view">
+               <div class="name_and_image">
+                {% if image is not None %}
+                       <img src= "/static/images/{{image}}" class="user_image" alt="user_image" style="width: 50px; height: 50px;">
+                {% else %}
+                       <img src= {%static 'app/images/avt.png' %} class="user_image" alt="user_image" style="width: 50px; height: 50px;">
+                {% endif %}
+                   <div class="name_info">
+                       <label class="info">Tài khoản này thuộc về</label><br>
+                       <label class="name">{{request.user}}</label>
+                   </div>
+               </div>
+               <ul class="user_nav_bar">
+                   <li style = "list-style-type: none" class="nav_row">
+                       <a href="../1" class="row">Thông tin chung</a>
+                   </li>
+                   {% if author %}
+                   <li style = "list-style-type: none" class="nav_row">
+                       <a href="../2" class="row">Thông tin tài khoản</a>
+                   </li>
+                   {% endif %}
+                   <li style = "list-style-type: none" class="nav_row">
+                       <a href="../3" class="row">Truyện theo dõi</a>
+                   </li>
+                   {% if author %}
+                   <li style = "list-style-type: none" class="nav_row">
+                       <a href="../4" class="row">Đổi mật khẩu</a>
+                   </li>
+                   {% endif %}
+               </ul>
+           </div>
+            {% if tabnumber == '1' %}
+                <div class="content_view">
+                    <div class="Detail_content" style="margin: 10px;">
+                        <label style="font-size: 24px; font-weight: bold;">THÔNG TIN CHUNG</label>
                     </div>
+                    <div class="Detail_content" style="margin: 20px;">
+                        <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">THÔNG TIN TÀI KHOẢN</label>
+                    </div>
+                    <div class="Detail_information">
+                        <label class="information_row">Email: {{user.email}}</label><br>
+                    </div>
+        
+                    <div style = "overflow-y: scroll width : 100%" class="Favor ">
+                        <div class="Detail_content" style="margin: 20px;">
+                            <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN THEO DÕI</label>
+                        </div>
+                        <div style = "display: flex ; align-items: center ; gap : 10px"   >
+                            {% for manga in mangaList %}
+                                {% if manga is not None %}
+                                    <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
+                                        <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
+                                        <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
+                                            <img style = "object-fit : contain;" src= "/static/images/{{manga.image}}"/>
+                                        </div>
+                        
+                                        <div>
+                                            <a style="font-weight : bold; font-size : 15px ; width : full" >{{manga.name}}</a>
+                                        </div>
+                                        <span>
+                                            <i style="color : yellow;" class="fa-sharp fa-solid fa-star"></i>
+                                            5
+                                        </span>
+                                        </div>
+                                    </a> 
+                                {% endif %}
+                                 
+                            {% endfor %}
+                        </div>
+                    </div>
+        
+                    {% comment %} <div class="Favor">
+                        <div class="Detail_content" style="margin: 20px;">
+                            <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN ĐÃ ĐĂNG</label>
+                        </div>
+        
+                        <div class="Favor_list-view" style="margin: 20px;">
+                            <!-- phần trên list -->
+                            <div class="heading-list-favor">
+                                <div class="col-name">Tên truyện</div>
+                                <div class="col-update">Ngày đăng</div>
+                                <div class="col-view">Nội dung</div>
+                            </div>
+                            
+                            <!-- list các trương -->
+                            <div class="list-chapter">
+                                <ul class="list-chapter-review">
+                                    <li class="favor-row">
+                                        <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
+                                        <div class="favor-update">hahahah</div>
+                                        <div class="favor-chapter">70000</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            {% elif tabnumber == '2' %}
+                <div class="content_view">
+                    <div class="Detail_content" style="margin: 10px;">
+                        <label style="font-size: 24px; font-weight: bold;">Cập nhật thông tin tài khoản</label>
+                    </div>
+                    <div class="Detail_content" style="margin: 20px;">
+                        <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">THÔNG TIN TÀI KHOẢN</label>
+                    </div>
+                    <form style="width: 23rem; margin-left : 20px" method="POST" action="">
+                        {% csrf_token %}
+                                <div style = "display: flex ; flex-direction: column; margin-bottom : 10px" class="form-outline mb-4 ">
+                                <label style = "font-weight: bold" class="form-label" for="form2Example18">Tài Khoản</label>
+                                    <input value = {{user.username}} name = "username" style = "padding : 5px" />
+                                </div>
                     
-                    <!-- list các trương -->
-                    <div class="list-chapter">
-                        <ul class="list-chapter-review">
-                            <li class="favor-row">
-                                <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
-                                <div class="favor-update">hahahah</div>
-                                <div class="favor-chapter">70000</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                                <div style = "display: flex ; flex-direction: column;  margin-bottom : 10px "  class="form-outline mb-4">
+                                <label style = "font-weight: bold" class="form-label" for="form2Example18">Email</label>
+                                    <input value = {{user.email}} name = "email" style = "padding : 5px"   />
+                                </div>  
 
-            {% comment %} <div class="Favor">
-                <div class="Detail_content" style="margin: 20px;">
-                    <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN ĐÃ ĐĂNG</label>
+                                <div style = "display: flex ; flex-direction: column;  margin-bottom : 10px "  class="form-outline mb-4">
+                                    <label style = "font-weight: bold" class="form-label" for="form2Example18">Image</label>
+                                    <input name = "image"  accept = "image/*,video/*"  type="file" name="img" id="" />
+                                </div>  
+                        <div class="pt-1 mb-4">
+                          <button style = "padding: 5px ; cursor: pointer ; background-color: #337ab7 ; outline: none ; color : white" name = "dk" class="btn btn-info btn-lg btn-block" type="submit">Cập nhật</button>
+                        </div>
+            
+                     </form> 
+        
+              
                 </div>
-
-                <div class="Favor_list-view" style="margin: 20px;">
-                    <!-- phần trên list -->
-                    <div class="heading-list-favor">
-                        <div class="col-name">Tên truyện</div>
-                        <div class="col-update">Ngày đăng</div>
-                        <div class="col-view">Nội dung</div>
+            {% elif tabnumber == '3' %}
+                <div class="content_view">
+                    <div class="Detail_content" style="margin: 10px;">
+                        <label style="font-size: 24px; font-weight: bold;">TRUYỆN THEO DÕI</label>
                     </div>
+                    <div style = "display: flex ; align-items: center ; gap : 10px"   >
+                        {% for manga in mangaList %}
+                            {% if manga is not None %}
+                                <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
+                                    <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
+                                    <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
+                                        <img style = "object-fit : contain;" src= "/static/images/{{manga.image}}"/>
+                                    </div>
                     
-                    <!-- list các trương -->
-                    <div class="list-chapter">
-                        <ul class="list-chapter-review">
-                            <li class="favor-row">
-                                <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
-                                <div class="favor-update">hahahah</div>
-                                <div class="favor-chapter">70000</div>
-                            </li>
-                        </ul>
+                                    <div>
+                                        <a style="font-weight : bold; font-size : 15px ; width : full" >{{manga.name}}</a>
+                                    </div>
+                                    <span>
+                                        <i style="color : yellow;" class="fa-sharp fa-solid fa-star"></i>
+                                        5
+                                    </span>
+                                    </div>
+                                </a> 
+                            {% endif %}
+                             
+                        {% endfor %}
                     </div>
+        
+                    {% comment %} <div class="Favor">
+                        <div class="Detail_content" style="margin: 20px;">
+                            <label style="font-size: 16px; border-left: 4px solid rgb(255, 0, 0); font-weight: bold;">TRUYỆN ĐÃ ĐĂNG</label>
+                        </div>
+        
+                        <div class="Favor_list-view" style="margin: 20px;">
+                            <!-- phần trên list -->
+                            <div class="heading-list-favor">
+                                <div class="col-name">Tên truyện</div>
+                                <div class="col-update">Ngày đăng</div>
+                                <div class="col-view">Nội dung</div>
+                            </div>
+                            
+                            <!-- list các trương -->
+                            <div class="list-chapter">
+                                <ul class="list-chapter-review">
+                                    <li class="favor-row">
+                                        <div class="favor-name">ĐẠI BÀNG TUNG CÁNH</div>
+                                        <div class="favor-update">hahahah</div>
+                                        <div class="favor-chapter">70000</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
                 </div>
-            </div> {% endcomment %}
-        </div>
+            {% else %}
+                <div class="content_view">
+                    <div class="Detail_content" style="margin: 10px;">
+                        <label style="font-size: 24px; font-weight: bold;">Đổi Mật Khẩu</label>
+                    </div>
+
+                    <form style="width: 23rem; margin-left : 20px" method="POST" action="">
+                        {% csrf_token %}
+                                <div style = "display: flex ; flex-direction: column; margin-bottom : 10px" class="form-outline mb-4 ">
+                                <label style = "font-weight: bold" class="form-label" for="form2Example18">Mật khẩu mới</label>
+                                    <input value = "" name = "newpassword" style = "padding : 5px" />
+                                </div>
+                    
+                                <div style = "display: flex ; flex-direction: column;  margin-bottom : 10px "  class="form-outline mb-4">
+                                <label style = "font-weight: bold" class="form-label" for="form2Example18">Xác nhận mật khẩu mới</label>
+                                    <input value = "" name = "newpassword2" style = "padding : 5px"   />
+                                </div>  
+
+                             
+                        <div class="pt-1 mb-4">
+                          <button style = "padding: 5px ; cursor: pointer ; background-color: #337ab7 ; outline: none ; color : white" name = "dk" class="btn btn-info btn-lg btn-block" type="submit">Đổi mật khẩu</button>
+                        </div>
+            
+                    </form> 
+                   
+            {% endif %}    
+            {% if messages %}
+            {% for message in messages %}    
+                    <script type=text/javascript>
+                          alert('{{ message }}');
+                    </script>
+            {% endfor %}
+        {% endif %}
+       </div> 
     </div>
+    {% endblock main-content %}
 
 

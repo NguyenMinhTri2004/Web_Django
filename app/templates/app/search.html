@@ -2,16 +2,32 @@
 {% load static %}
 
 {% block main-content %}
-    <div style="display : flex ; gap : 20px;" >
-        {% for manga in result %}
-                <a href="/manga/{{ manga.idManga }}">
-                    <div style="width : 250px ; height : 420px;  cursor : pointer ; border : 1px solid #ccc" >
-                    <div></div>
-                        <img src= "static/images/{{manga.image}}"/>
+<div style = "margin : 60px 20px ; padding-top : 20px" class="container" >  
+    <div>
+        <div style = "border-bottom: 1px solid #ccc ; margin-top: 50px ; display : flex ; align-items: center ; gap : 10px" >
+          <i style="font-size: 20px" class="fa-solid fa-book"></i>
+          <h4 style="font-weight: bold" >Kết quả tìm kiếm</h4>
+        </div>
 
-                        <p style="font-weight : bold; font-size : 13px" >{{manga.name}}</p>
+        <div style = "display: flex ; align-items: center ; gap : 10px" >
+            {% for manga in result %}
+                  <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
+                    <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
+                      <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
+                        <img style = "object-fit : contain;" src= "static/images/{{manga.image}}"/>
+                      </div>
+      
+                      <div>
+                        <a style="font-weight : bold; font-size : 15px ; width : full" >{{manga.name}}</a>
+                      </div>
+                      <span>
+                          <i style="color : yellow;" class="fa-sharp fa-solid fa-star"></i>
+                          5
+                      </span>
                     </div>
-                </a>
-        {% endfor %}
+                  </a>
+            {% endfor %}
+        </div>
     </div>
+</div>
 {% endblock main-content %}

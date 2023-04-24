@@ -1,8 +1,9 @@
-{% comment %} {% extends 'app/base.html' %} {% endcomment %}
+{% extends 'app/base.html' %}
 {% load static %}
 {% block main-content %}
 <link rel="stylesheet" href="{%static 'app/css/chapterHeader.css' %}">
 <link rel="stylesheet" href="{%static 'app/css/Style.css' %}">
+<link rel="stylesheet" href="{%static 'app/css/comment.css' %}">
 <link rel="stylesheet" href="{%static 'app/css/chart.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
@@ -11,12 +12,12 @@
        <div>
             <div>
                  <div class="top">
-                 <ul class="link">
+                 {% comment %} <ul class="link">
                       <li><a href="#">Trang chủ</a></li>
                       <li><a href="#">Thể loại</a></li>
                       <li><a href="#">Tên truyện</a></li>
                       <li><a href="#">Chapter</a></li>
-                 </ul>
+                 </ul> {% endcomment %}
                  <h1 class="tieu_de">
                       <a href="#">Tên Truyện</a>
                       <span>- {{chapterList.name}}</span>
@@ -36,28 +37,68 @@
                                 
                       <em>Sử dụng mũi tên trái (<-) hoặc phải (<-) để chuyển chapter</em>
                  </div>
-                 <div class="chuyen_chap">
+                 <div style = "display: flex ; align-items: center ; gap : 20px ; justify-content: center"  class="chuyen_chap" aria-hidden="true"></i>
                       <a class="home" href="/"><i class="fa-solid fa-house"></i></a>
                       <a class="back_chaplist" href="#"><i class="fa-solid fa-list"></i></a>
+                      {% if start %}
+                      <a class="previous" href = ""><i class="fa-solid fa-square-caret-left"></i></a>
+                      {% else %}
                       <a class="previous" href = "../{{chapterPrev}}"><i class="fa-solid fa-square-caret-left"></i></a>
-                  
+                      {% endif %}
+                     
+                      {% comment %} <select> {% endcomment %}
+                          
+                      {% comment %} </select> {% endcomment %}
+                      {% if end %}
+                      <a class="next" href = ""><i class="fa-solid fa-square-caret-right"></i></a>
+                      {% else %}
                       <a class="next" href = "../{{chapterNext}}"><i class="fa-solid fa-square-caret-right"></i></a>
-                      <a class="follow" href="#">
+                      {% endif %}
+
+                     
+                      {% comment %} <a class="follow" href="#">
                            <i class="fa-solid fa-star"></i>
                            <span>Theo dõi</span>
-                      </a>
+                      </a> {% endcomment %}
                  </div>
+               <div style = "display : flex ; align-items: center ; gap : 10px ; justify-content: center;" >
+                    {% for chapter in chapterAll %}
+                    {% comment %} <option> {% endcomment %}
+                       <a style = "padding : 10px ; background-color : #ccc ;  border-radius : 10px" href = "../{{chapter.order}}">
+                            {{chapter.name}} 
+                       </a>    
+                    {% comment %} <option> {% endcomment %}
+                   {% endfor %}
+               </div>
+              
 
-                 {% for chapter in chapterAll %}
-                      <a href = "../{{chapter.order}}">{{chapter.name}}</a> 
-                 {% endfor %}
+               
                  </div>
             </div>  
-              <div style="display : flex ; align-items : center ; justify-content : center ; flex-direction : column";  >
+             <div style="display : flex ; align-items : center ; justify-content : center ; flex-direction : column ; background-color : black";  >
                    {% for image in chapterContent %}
                           <img src="{{ image }}"/>
                    {% endfor %}
               </div>
-       </div>   
+             </div>   
+
+             <div style = "display: flex ; align-items: center ; gap : 20px ; justify-content: center ; padding : 20px 0px "  class="chuyen_chap" aria-hidden="true"></i>
+               {% if start %}
+                   <a style = "padding: 10px 20px ; background-color : black" class="previous" href = ""><i class="fa-solid fa-square-caret-left"></i></a>
+               {% else %}
+                   <a class="previous InteractButton btnReadLike" href = "../{{chapterPrev}}"><i class="fa-solid fa-square-caret-left"></i></a>
+               {% endif %}
+
+               {% if end %}
+               <a style = "padding: 10px 20px ; background-color : black" class="next" href = ""><i class="fa-solid fa-square-caret-right"></i></a>
+               {% else %}
+               <a class="next InteractButton btnReadLike  " href = "../{{chapterNext}}"><i class="fa-solid fa-square-caret-right"></i></a>
+               {% endif %}
+          
+              
+              
+
+            </div>
+
      </body>
 {% endblock main-content %}
