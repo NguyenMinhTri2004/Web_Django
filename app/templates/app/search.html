@@ -8,26 +8,29 @@
           <i style="font-size: 20px" class="fa-solid fa-book"></i>
           <h4 style="font-weight: bold" >Kết quả tìm kiếm</h4>
         </div>
-
-        <div style = "display: flex ; align-items: center ; gap : 10px" >
-            {% for manga in result %}
-                  <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
-                    <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
-                      <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
-                        <img style = "object-fit : contain;" src= "static/images/{{manga.image}}"/>
-                      </div>
-      
-                      <div>
-                        <a style="font-weight : bold; font-size : 15px ; width : full" >{{manga.name}}</a>
-                      </div>
-                      <span>
-                          <i style="color : yellow;" class="fa-sharp fa-solid fa-star"></i>
-                          5
-                      </span>
-                    </div>
-                  </a>
-            {% endfor %}
-        </div>
+        {% if length > 0 %}
+            <div style = "display: flex ; align-items: center ; gap : 10px" >
+                {% for manga in result %}
+                      <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
+                        <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
+                          <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
+                            <img style = "object-fit : contain;" src= "static/images/{{manga.image}}"/>
+                          </div>
+          
+                          <div>
+                            <a style="font-weight : bold; font-size : 15px ; width : full" >{{manga.name}}</a>
+                          </div>
+                          {% comment %} <span>
+                              <i style="color : yellow;" class="fa-sharp fa-solid fa-star"></i>
+                              5
+                          </span> {% endcomment %}
+                        </div>
+                      </a>
+                {% endfor %}
+            </div>
+        {%else%}  
+            <h1 style="text-align:center; font-weight:bold; color : blue ; margin-top: 50px" >KHÔNG TÌM THẤY TRUYỆN</h1>
+        {% endif %}
     </div>
 </div>
 {% endblock main-content %}

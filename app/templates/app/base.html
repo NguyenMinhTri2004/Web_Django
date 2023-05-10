@@ -31,23 +31,24 @@
                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                    <!-- Ô nhập thông tin tìm kiếm -->
-                   <input id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
+                   <input style = "padding : 5px" id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
                </form>
            </div>
    
            <!-- Đăng nhập-->
-           <div class="login-function">
+           <div style = "margin-top: 10px" class="login-function">
                <!-- Nút đăng nhập -->
                   {% if request.user.is_authenticated %}
-                        <a href = "/profile/{{request.user}}/1" style="color:white" >Hello {{request.user}}<span/>
+                      
+                        <a style = "margin-right: 20px" href = "/profile/{{request.user}}/1" style="color:white" >Hello {{request.user}}<span/>
                         <a href="/logout" >Logout</a>   
                   {% else %}
                         <a href = "/login" style="color:white" >Đăng nhập<span/>
                   {% endif %}
               
-               <button id="btnLogin" onclick="OpenLogin()">
+               {% comment %} <button id="btnLogin" onclick="OpenLogin()">
                    <i class="fa-solid fa-right-to-bracket"></i>
-               </button>
+               </button> {% endcomment %}
                
            </div>      
        </div>

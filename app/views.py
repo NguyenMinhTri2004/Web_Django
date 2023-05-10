@@ -365,6 +365,7 @@ def new (request):
 
     return render(request, 'app/new.html' , context)
 
+
 def get_similar(movie_name,rating,corrMatrix):
     similar_ratings = corrMatrix[movie_name]*(rating-2.5)
     similar_ratings = similar_ratings.sort_values(ascending=False)
@@ -384,22 +385,42 @@ def recommed (request):
 
     print(movie_rating)
     userRatings = movie_rating.pivot_table(index=['user_id'],columns=['manga_id'],values='rating')
+    print("userRating")
+    print(userRatings)
     userRatings = userRatings.fillna(0,axis=1)
+    print("userRatingcheck")
+    print(userRatings)
     corrMatrix = userRatings.corr(method='pearson')
+    print("corrMatrix")
+    print(corrMatrix)
 
     user = pd.DataFrame(list(Myrating.objects.filter(user=request.user).values())).drop(['user_id','id'],axis=1)
+    print("user")
+    print(user)
     user_filtered = [tuple(x) for x in user.values]
+    print("user_filtered")
+    print(user_filtered)
     movie_id_watched = [each[0] for each in user_filtered]
+    print("movie_id_watched")
+    print(movie_id_watched)
 
     similar_movies = pd.DataFrame()
+    print("similar_movies")
+    print(similar_movies)
     for movie,rating in user_filtered:
         similar_movies = similar_movies.append(get_similar(movie,rating,corrMatrix),ignore_index = True)
-
+    
+    print("similar_movies2")
+    print(similar_movies)
+    
     movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
+    print("movies_id")
+    print(movies_id)
     movies_id_recommend = [each for each in movies_id if each not in movie_id_watched]
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
     movie_list=list(Manga.objects.filter(idManga__in = movies_id_recommend).order_by(preserved)[:10])
-
+    print("movie_list")
+    print(movie_list)
     context = {'movie_list': movie_list}
   
     return render(request, 'app/recommed.html' , context)
@@ -417,6 +438,7 @@ def search (request):
     
     result = []
     
+    
     for item in qs:
         result.append(Manga.objects.get(idManga = item))
         print("item" , item)
@@ -424,7 +446,11 @@ def search (request):
     # mangaList = Manga.objects.get(idManga = item)
     # print("manga" , manga)
     # print(result)
+    length = len(result)
+    
+    print("length" , length)
     context = {
         "result" : result,
+        "length" : length,
     }
     return render(request, 'app/search.html' , context)
