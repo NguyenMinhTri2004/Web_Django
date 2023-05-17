@@ -33,8 +33,6 @@ class Category(models.Model):
     def __str__(self) :
         return self.name
  
-    
-    
 class Manga(models.Model):
     idManga = models.CharField(max_length=200, null=False , blank=True , primary_key=True,  unique=True)
     name = models.CharField(max_length=200, null=True , blank=True)
@@ -86,6 +84,7 @@ class MyList(models.Model):
     watch = models.BooleanField(default=False)
     
 class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
     context = models.CharField(max_length=200 , null=True , blank=True)

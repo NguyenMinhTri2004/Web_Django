@@ -2,16 +2,19 @@
 {% load static %}
 
 {% block main-content %}
-<div style = "margin : 60px 20px ; padding-top : 20px" class="container" >  
-    <div>
+<div style = "margin : 60px 20px ; padding-top : 20px;display : flex ; justify-content : space-between ;" class="container" >  
+    <div style = "width : 70%">
         <div style = "border-bottom: 1px solid #ccc ; margin-top: 50px ; display : flex ; align-items: center ; gap : 10px" >
           <i style="font-size: 20px" class="fa-solid fa-book"></i>
           <h4 style="font-weight: bold" >Kết quả tìm kiếm</h4>
         </div>
         {% if length > 0 %}
-            <div style = "display: flex ; align-items: center ; gap : 10px" >
+            <div style = "display: flex ; align-items: center ; gap : 10px; flex-wrap : wrap" >
+              {% if type == 'all' %}
                 {% for manga in result %}
+                     
                       <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
+                       
                         <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
                           <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
                             <img style = "object-fit : contain;" src= "static/images/{{manga.image}}"/>
@@ -27,10 +30,45 @@
                         </div>
                       </a>
                 {% endfor %}
+              {%else%}
+                    {% for manga in result %}
+                      {% if manga.category.name == type %}
+                        <a style = "margin : 40px 0px" href="/manga/{{ manga.idManga }}">
+                          
+                          <div style="width : 260px ; height : 420px;  cursor : pointer; margin-top :20px" >
+                            <div style = "border : 1px solid #ccc ; margin-bottom : 10px ; border-radius : 5px ; padding : 5px">
+                              <img style = "object-fit : contain;" src= "static/images/{{manga.image}}"/>
+                            </div>
+            
+                            <div>
+                              <a style="font-weight : bold; font-size : 15px ; width : full" >{{manga.name}}</a>
+                            </div>
+                           
+                          </div>
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+              {% endif %}
             </div>
         {%else%}  
             <h1 style="text-align:center; font-weight:bold; color : blue ; margin-top: 50px" >KHÔNG TÌM THẤY TRUYỆN</h1>
         {% endif %}
+    </div>
+
+    <div style = "border-left: 1px solid black" >
+       <form method="POST" action=""  >
+        {% csrf_token %}
+         {% for type in typeList %}
+          <div style = "margin-left: 20px" >
+            <input class="form-check-input" type="radio" value="{{type}}" name="flexRadioDefault" id="flexRadioDefault">
+            <label class="form-check-label" for="flexRadioDefault1">
+              {{type.name}}
+            </label>
+          </div>
+                
+         {% endfor %}
+         <button style = "margin-left: 20px ; margin-top : 20px" type="submit" class="btn btn-primary">Lọc</button>
+       </form>
     </div>
 </div>
 {% endblock main-content %}

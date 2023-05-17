@@ -15,11 +15,11 @@
           </a>
         <div class="col-sm-6 text-black">
   
-          <div class="px-5">
+          <a href = "/" class="px-5">
             <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
             
             <img src="{%static 'app/images/HeaderLogo.png' %}" alt="Logo" style="width: 100px; height: 72; margin-top: 10px;">
-          </div>
+          </a>
   
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
@@ -52,8 +52,8 @@
             {{form.password2}}
           </div>
 
-              <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-              <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+              {% comment %} <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p> {% endcomment %}
+              <p>Have an account? <a href="/login" class="link-info">Login here</a></p>
                       
           {% if messages %}
               {% for message in messages %}    

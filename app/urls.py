@@ -14,6 +14,7 @@ urlpatterns = [
     path('hot', views.hot),
     path('login', views.Login),
     path('logout', views.logoutPage),
+    path('author/<str:nameAuthor>/', views.author),
     path('manga/<str:id>/', views.manga),
     path('manga/<str:mangaId>/chapter/<str:chapterId>/', views.chapter),
 ]

@@ -1,3 +1,4 @@
+import datetime
 from itertools import count
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -101,15 +102,17 @@ def manga (request, id):
     
     chapterList = Chapter.objects.filter(idChapter=id)
     
-    likedList = MyList.objects.filter(user = request.user , manga = manga)
-    
-    ratingList = Myrating.objects.filter(user = request.user , manga = manga)
+   
     
     liked = False
     
     ratinged = False
     
     rattingelm = ""
+    
+    likedList = []
+    
+    ratingList = []
     
     for item in likedList:
         if(item.manga == manga and item.user  == request.user):
@@ -163,6 +166,11 @@ def manga (request, id):
     
     if(request.method == 'POST'):
         if(request.user.is_authenticated):
+            
+            likedList = MyList.objects.filter(user = request.user , manga = manga)
+             
+            ratingList = Myrating.objects.filter(user = request.user , manga = manga)
+             
             if('ratting' in request.POST): 
                 ratting = Myrating(user = request.user , manga = manga , rating = request.POST['ratting'])
                 ratting.save()
@@ -184,6 +192,18 @@ def manga (request, id):
             if('unlike' in request.POST):
                 like = MyList.objects.get(user = request.user , manga = manga )
                 like.delete()
+                
+                
+            if('idDelete' in request.POST):
+                print("contxt", request.POST['idDelete'])
+                comment = Comment.objects.get(id = request.POST['idDelete'])
+                comment.delete()
+                
+            if('nameComment' in request.POST):
+                # print("contxt", request.POST['idDelete'])
+                comment = Comment.objects.filter(manga = manga).first()
+                comment.context = request.POST['nameComment']
+                comment.save()
                
             messages.info(request, "Thao tác thành công")
            
@@ -235,11 +255,25 @@ def profile (request , username , tabnumber):
     
     newAvatar = Avatar.objects.all()
     
+    typeList = Category.objects.all()
+    
+    statusList = Status.objects.all()
+    
     author = request.user.username == username
+    
+    try:
+        authorId =  Author.objects.get(name = request.user.username).id
+    except Author.DoesNotExist:
+        authorId  = -1
+    
+    mangaOwnerList = Manga.objects.filter(author = authorId)
+    
+    print(mangaOwnerList)
     
     user = User.objects.get(username = username)
     
     image = ""
+    
     
     for item in newAvatar:
                 if (item.user.username == username):
@@ -248,6 +282,8 @@ def profile (request , username , tabnumber):
                         image = item.image
                         print("avt2" , avt)
                         break
+                else:
+                        avt = Avatar(user = User.objects.get(username = username))
                     
     
     if(request.method == 'POST'):
@@ -264,10 +300,85 @@ def profile (request , username , tabnumber):
                 user.save()  
                 messages.info(request, "Đổi mật khẩu thành công")
              
-             
-   
+            if('mangaName' in request.POST and 'descriptionManga' in request.POST and 'idManga' not in  request.POST):  
+                lastMangaId = Manga.objects.all().count()
+                newAuthor = Author
+                nameMange = request.POST['mangaName']
+                descriptionMange = request.POST['descriptionManga']
+                status = request.POST['status']
+                type = request.POST['type']
+                imageManga = request.POST['imageManga']
+                authorList = Author.objects.all()
+                lastId = authorList.count()
+                
+                try:
+                  checkExit =  Author.objects.get(name = request.user.username)
+                except Author.DoesNotExist:
+                  checkExit = False
+               
+                print(checkExit)
+                
+                if(checkExit is False):
+                    lastId = lastId + 1
+                    newAuthor = Author(id = lastId , name = request.user.username)
+                    
+                    manga = Manga(idManga = lastMangaId + 1 , name = nameMange , description = descriptionMange , author = newAuthor, status = Status(id = status) , category = Category(id = type) ,viewCount = 0 , likedList = [] , image = imageManga)
+                    newAuthor.save()
+                    manga.save()
+                else:
+                    manga = Manga(idManga = lastMangaId + 1 , name = nameMange , description = descriptionMange , author =  checkExit, status = Status(id = status) , category = Category(id = type) ,viewCount = 0 , likedList = [] , image = imageManga, created_at = datetime.date.today() )
+                    manga.save()
+                    
+                messages.info(request, "Đăng truyện thành công")
+                
+            
+            
+            if('idManga' in request.POST):  
+                idStatus = -1
+                idType = -1
+                if(request.POST['type'] == "Manga"):
+                    idType = 1
+                else :
+                    idType = 2  
+                    
+                if(request.POST['status'] == "Hoàn thành"):
+                    idStatus = 1
+                elif (request.POST['status'] == "Đang tiến hành") :
+                    idStatus = 2
+                else:
+                    idStatus = 3
+                    
+                    
+                newMange = Manga.objects.get(idManga=request.POST['idManga'])
+                newMange.name = request.POST['mangaName']
+                newMange.description = request.POST['descriptionManga']
+                newMange.type = Category(id = idType)
+                newMange.status = Status(id = idStatus)
+                newMange.image = request.POST['imageManga']
+                newMange.save()
+                
+                messages.info(request, "Cập nhật thành công")
+               
+                    
+            if('idDelete' in request.POST):  
+                mangaDelete = Manga.objects.get(idManga=request.POST['idDelete'])   
+                mangaDelete.delete()
+                messages.info(request, "Xóa thành công")
+                
+            
+            if('idChapter' in request.POST):  
+                chapterName = request.POST['chapterName']
+                print(request.POST['idChapter'])
+                idChapter = Manga.objects.get(idManga=request.POST['idChapter'])
+                chapterContent = request.POST['chapterContent']
+                chapterList = Chapter.objects.filter(idChapter=idChapter)
+                length = chapterList.count()
+                newChapter = Chapter(idChapter = idChapter, name = chapterName, content = [chapterContent], order = length + 1 , viewCount = 0)
+                newChapter.save()
+                messages.info(request, "Thêm chapter thành công")
+                 
     
-    print('user', type(user))
+    # print('user', type(user))
     
     likedList = MyList.objects.all()
     
@@ -304,6 +415,9 @@ def profile (request , username , tabnumber):
         'mangaList' : mangaList,
         'image' : image,
         'author' : author,
+        'typeList' : typeList,
+        'statusList' : statusList,
+        'mangaOwnerList' : mangaOwnerList,
     }
     return render(request, 'app/profile.html' , context)
 
@@ -375,13 +489,13 @@ def get_similar(movie_name,rating,corrMatrix):
 def recommed (request):
     movie_rating=pd.DataFrame(list(Myrating.objects.all().values()))
 
-    # new_user=movie_rating.user_id.unique().shape[0]
-    # current_user_id= request.user.id
-	# if new user not rated any movie
-    # if current_user_id>new_user:
-    #     movie=Manga.objects.get(idManga= ma)
-    #     q=Myrating(user=request.user,movie=movie,rating=0)
-    #     q.save()
+    new_user=movie_rating.user_id.unique().shape[0]
+    current_user_id= request.user.id
+	# if new_user not rated any movie
+    if current_user_id>new_user:
+        movie=Manga.objects.get(idManga= 1)
+        q=Myrating(user=request.user,manga=movie,rating=0)
+        q.save()
 
     print(movie_rating)
     userRatings = movie_rating.pivot_table(index=['user_id'],columns=['manga_id'],values='rating')
@@ -426,17 +540,50 @@ def recommed (request):
     return render(request, 'app/recommed.html' , context)
 
 
+def author (request , nameAuthor):
+    authorId = Author.objects.get(name = nameAuthor)
+    
+   
+    manga = Manga.objects.filter(author = authorId)
+    
+    print(manga)
+    
+    
+    context = {
+        'mangaList' : manga
+    }
+    
+
+    return render(request, 'app/author.html' , context)
+
 
 def search (request):
     print(request.body)
-    keyword = request.POST['txtSearch']
+    
+    typeList = Category.objects.all()
+    
+    keyword = ""
+    
+    type = "all"
+    
+    if(request.method == 'POST'):
+        if('txtSearch' in request.POST):          
+            keyword = request.POST['txtSearch']
+        
+        if('flexRadioDefault' in request.POST):          
+            type = request.POST['flexRadioDefault']
+    
+    searchTxt = keyword
+    
     qs = Manga.objects.all()
-    for term in keyword.split():
+    for term in searchTxt.split():
         qs = qs.filter( Q(name__icontains = term))
    
     print(qs)
     
     result = []
+    
+    
     
     
     for item in qs:
@@ -448,9 +595,16 @@ def search (request):
     # print(result)
     length = len(result)
     
-    print("length" , length)
+    # print("length" , length)
+    
+    # print(result[0].category.name)
+    
+    # print("type" , type)
+    
     context = {
         "result" : result,
         "length" : length,
+        "typeList" : typeList,
+        "type" : type
     }
     return render(request, 'app/search.html' , context)

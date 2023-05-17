@@ -99,9 +99,7 @@
         <div class="list-view">
             <p class="title-list" style="font-size: 24px; color:rgb(45, 174, 255);"><i class="fa-solid fa-file"></i> NỘI DUNG</p>
             <hr style="border-top: 2px solid rgb(45, 174, 255);">
-            <p class="Manga-Review"> Các vị thần mở hội nghị để bàn về sự sống còn của nhân loại. 
-            Tất cả đều quyết định "kết liễu" con người, chỉ duy một valkyrie đứng lên phản đối bằng cách đề nghị 1 cuộc chiến giữa thần và người. 
-            Cuộc chiến quyết định số phận của nhân loại này sẽ ra sao? Xin mời đón đọc.</p>
+            <p class="Manga-Review">{{manga.description}}</p>
         </div>
 
         <!-- Phần các tập truyện -->
@@ -135,30 +133,42 @@
 
         <h1 style = "margin-left: 20px ; margin-top : 40px" >Comment</h1>
 
-        <section style="background-color: #eee; width : 50%; margin : 20px">
-            <div class="container my-5 py-5">
-              <div class="row d-flex justify-content-center">
-                <div class="col-md-12 col-lg-10 col-xl-8">
-                  <div class="card">
+        <section style="background-color: #eee; width : 100%; margin : 20px">
+            <div style = "width : 100% ; background-color: #eee" class="container my-5 py-5">
+              <div style = "width : 100% ; background-color: #eee"   class="row d-flex justify-content-center">
+                <div style = "width : 100% ; background-color: #eee"  class="col-md-12 col-lg-10 col-xl-8">
+                  <div style = "width : 100% ; background-color: #eee; display : flex ; flex-direction: column"  class="">
                     {% for comment in listComment %}  
-                        {% for img in imageArray %} 
-                            {% if comment.user.username == img.user.username %}
-                                <a href = "/profile/{{comment.user.username}}/1" style = "margin : 20px 0px" class="card-body">
+                        {% comment %} {% for img in imageArray %}  {% endcomment %}
+                           
+                            {% comment %} {% if comment.user.username == img.user.username %} {% endcomment %}
+                                <a href = "/profile/{{comment.user.username}}/1" style = "margin : 20px 0px ; border : 1px solid black ; background-color : white" class="card-body">
                                     <div style = "display : flex ; align-items : center ; gap : 20px" class="d-flex flex-start align-items-center">
-                                        <img style = "border-radius : 100%" class="rounded-circle shadow-1-strong me-3"
-                                            src= "/static/images/{{img.image}}" alt="avatar" width="60"
-                                            height="60" />
+                                       {% comment %} <img style = "border-radius : 100%" class="rounded-circle shadow-1-strong me-3"
+                                            src= "/static/images/{{imageArray.counter0.image}}" alt="avatar" width="60"
+                                            height="60" />  {% endcomment %}
                                         <div>
                                             <h4 class="fw-bold text-primary mb-1">{{comment.user.username}}</h4>
                                         </div>
                                     </div>
                         
-                                    <p style = "margin-top: 20px" class="mt-3 mb-4 pb-2">
+                                    <p style = "margin-top: 20px; margin-left : 95px" class="mt-3 mb-4 pb-2">
                                         {{comment.context}}
                                     </p>
                                 </a>
-                            {% endif %}
-                         {% endfor %}
+                                    {% if request.user.username == comment.user.username %}  
+                                        <div style = "margin-left: auto ; display: flex ; align-items: center ; gap : 5px" >
+                                            <button data-bs-toggle="modal" data-bs-whatever= "{{comment.context}}" data-bs-target="#exampleModal" type="button" class="btn btn-primary">Update</button>
+                                            <form method="post" action="">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="idDelete" value = "{{comment.id}}"/>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                           
+                            {% comment %} {% endif %} {% endcomment %}
+                         {% comment %} {% endfor %} {% endcomment %}
                    {% endfor %}
                     
 
@@ -180,6 +190,35 @@
                   </div>
                 </div>
               </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form style="width: 23rem; margin-left : 20px" method="POST" action="">
+                            {% csrf_token %}
+                                   <input type = "hidden" name = "idManga" value = "" class = "idManga" />
+                                    <div style = "display: flex ; flex-direction: column; margin-bottom : 10px" class="form-outline mb-4 ">
+                                    <label style = "font-weight: bold" class="form-label" for="form2Example18">Nội dụng mới</label>
+                                        <input class = "nameComment" value = "" name = "nameComment" style = "padding : 5px" />
+                                    </div>
+                        
+                            <div class="pt-1 mb-4">
+                            <button style = "padding: 5px ; cursor: pointer ; background-color: #337ab7 ; outline: none ; color : white" name = "dk" class="btn btn-info btn-lg btn-block" type="submit">Chỉnh sửa</button>
+                            </div>
+                
+                        </form> 
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+             </div>
             </div>
           </section>
             {% if messages %}
@@ -195,4 +234,23 @@
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
     ></script>
+
+    <script>
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var recipient = button.getAttribute('data-bs-whatever')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+       
+        var modalBodyInput = exampleModal.querySelector('.nameComment')
+
+      
+        modalBodyInput.value = recipient
+        })
+    </script>
 {% endblock main-content %}

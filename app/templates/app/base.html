@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <script src="{%static 'app/js/UI.js' %}"></script>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 
 <body>
@@ -22,35 +25,37 @@
                <img src="{%static 'app/images/HeaderLogo.png' %}" alt="Logo" style="width: 100px; height: 72; margin-left: 50px; margin-top: 10px;">
            </a>
            
+          
+               <div class="search-holder">
+                   <!-- Nút tìm kiếm -->
+                   <form method="POST" action="/search">
+                       {% csrf_token %}
+                       <button id="btnSearch" type = "submit" name="btnSearch">
+                           <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                       <!-- Ô nhập thông tin tìm kiếm -->
+                       <input style = "padding : 5px" id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
+                   </form>
+               </div>
+       
+               <!-- Đăng nhập-->
+               <div style = "margin-top: 50px ; margin-left: 20px" class="login-function">
+                   <!-- Nút đăng nhập -->
+                      {% if request.user.is_authenticated %}
+                          
+                            <a style = "margin-right: 20px" href = "/profile/{{request.user}}/1" style="color:white" >Hello {{request.user}}<span/>
+                            <a href="/logout" >Logout</a>   
+                      {% else %}
+                            <a href = "/login" style="color:white" >Đăng nhập<span/>
+                      {% endif %}
+                  
+                   {% comment %} <button id="btnLogin" onclick="OpenLogin()">
+                       <i class="fa-solid fa-right-to-bracket"></i>
+                   </button> {% endcomment %}
+                   
+               </div>      
+          
            <!-- Tìm kiếm -->
-           <div class="search-holder">
-               <!-- Nút tìm kiếm -->
-               <form method="POST" action="/search">
-                   {% csrf_token %}
-                   <button id="btnSearch" type = "submit" name="btnSearch">
-                       <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                   <!-- Ô nhập thông tin tìm kiếm -->
-                   <input style = "padding : 5px" id="txtSearch" name="txtSearch" type="text" placeholder=" Bạn muốn tìm gì?">
-               </form>
-           </div>
-   
-           <!-- Đăng nhập-->
-           <div style = "margin-top: 10px" class="login-function">
-               <!-- Nút đăng nhập -->
-                  {% if request.user.is_authenticated %}
-                      
-                        <a style = "margin-right: 20px" href = "/profile/{{request.user}}/1" style="color:white" >Hello {{request.user}}<span/>
-                        <a href="/logout" >Logout</a>   
-                  {% else %}
-                        <a href = "/login" style="color:white" >Đăng nhập<span/>
-                  {% endif %}
-              
-               {% comment %} <button id="btnLogin" onclick="OpenLogin()">
-                   <i class="fa-solid fa-right-to-bracket"></i>
-               </button> {% endcomment %}
-               
-           </div>      
        </div>
    
        <!-- Topmenu -->
@@ -255,7 +260,7 @@
         </div>
         <hr>
         <div style="display:flex; justify-content: center; color: #FFF4F9;; font-size: 16px;">
-            <label>@2022 - sàobnoiwuuiwsàobnoiwuuiw</label>
+            <label>@2023 - Nhóm 22</label>
         </div>          
     </div>
 
